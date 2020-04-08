@@ -12,6 +12,7 @@
     <Product>Modern Notepad</Product>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <Version>1.0.5</Version>
+    <ApplicationIcon>ModernNotepad.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
