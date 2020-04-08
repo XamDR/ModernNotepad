@@ -1,0 +1,58 @@
+﻿<Window x:Class="ModernNotepad.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="{Binding AssemblyTitle, StringFormat={StaticResource AboutTitle}}"
+        Height="350" Width="500"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        ui:WindowHelper.UseModernWindowStyle="True">    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>        
+
+        <TextBlock Grid.Row="0" Text="{Binding AssemblyProduct}" Margin="10,5" Foreground="MediumPurple" FontSize="20"/>
+        <TextBlock Grid.Row="1" Margin="10,5">
+            <Run Text="{DynamicResource Author}"/>
+            <Run Text="{Binding AssemblyCompany, Mode=OneWay, StringFormat='\{0\}. '}"/>
+            <Run Text="{DynamicResource Email}"/>
+        </TextBlock>
+        <TextBlock Grid.Row="2" Margin="10,5">
+            <Run Text="{DynamicResource Version}"/>            
+            <Run Text="{Binding AssemblyVersion, Mode=OneWay}"/>
+        </TextBlock>
+        <TextBlock Grid.Row="3" Text="{Binding AssemblyCopyright}" Margin="10,5"/>
+        <TextBlock Grid.Row="4" TextWrapping="WrapWithOverflow" Margin="10,5">
+            <Run Text="{Binding AssemblyDescription, Mode=OneWay}"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="{DynamicResource Description}"/>
+            <LineBreak/>
+            <Hyperlink NavigateUri="https://github.com/Kinnara/ModernWpf" Command="{Binding OpenHyperlinkCommand}"
+                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}">
+                ModernWpf
+            </Hyperlink>
+            <LineBreak/>
+            <Hyperlink NavigateUri="https://github.com/microsoft/XamlBehaviorsWpf" Command="{Binding OpenHyperlinkCommand}"
+                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}">
+                XamlBehaviorsWpf
+            </Hyperlink>
+        </TextBlock>
+        <Button Grid.Row="5" Content="{DynamicResource OkButton}" IsDefault="True" HorizontalAlignment="Right" 
+                MinWidth="100" Margin="0 0 15 10" Padding="15,7,15,7" Command="{Binding CloseWindowCommand}"/>
+    </Grid>
+</Window>

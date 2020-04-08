@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>ModernNotepad.Program</StartupObject>
+    <Copyright>Copyright © 2020 Max Díaz.</Copyright>
+    <Company></Company>
+    <Authors>Max Díaz</Authors>
+    <Description>Modern Notepad is a modern and minimalist notepad application. It was developed using WPF on .Net Core 3.1.</Description>
+    <Product>Modern Notepad</Product>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <Version>1.0.5</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Page Remove="Locales\Strings_en-US.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="ModernWpfUI" Version="0.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModernNotepadLibrary\ModernNotepadLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Locales\Strings_en-US.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+
+</Project>

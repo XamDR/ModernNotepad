@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <sys:String x:Key="AppTitle">Sin título - Modern Notepad</sys:String>
+    
+    <!--#region CommandBar-->
+    <sys:String x:Key="New">Nuevo</sys:String>    
+    <sys:String x:Key="Open">Abrir</sys:String>
+    <sys:String x:Key="Save">Guardar</sys:String>
+    <sys:String x:Key="Font">Fuente</sys:String>
+    <sys:String x:Key="Find">Buscar</sys:String>    
+    <sys:String x:Key="SaveAs">Guardar como</sys:String>
+    <sys:String x:Key="StatusBar">Barra de estado</sys:String>
+    <sys:String x:Key="DarkTheme">Tema oscuro</sys:String>
+    <sys:String x:Key="AboutModernNotepad">Acerca de</sys:String>
+    <sys:String x:Key="Close">Salir</sys:String>
+    <!--#endregion-->
+    
+    <!--#region ToolTips-->
+    <sys:String x:Key="NewWindowToolTip">Abrir una ventana nueva (Ctrl+Shift+N)</sys:String>
+    <sys:String x:Key="NewFileToolTip">Crear archivo nuevo (Ctrl+N)</sys:String>
+    <sys:String x:Key="OpenToolTip">Abrir archivo (Ctrl+A)</sys:String>
+    <sys:String x:Key="SaveToolTip">Guardar archivo (Ctrl+S)</sys:String>
+    <sys:String x:Key="FindToolTip">Buscar o reemplazar texto (Ctrl+F)</sys:String>
+    <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
+    <sys:String x:Key="AboutToolTip">Acerca de Modern Notepad</sys:String>
+    <!--#endregion-->
+    
+    <!--#region StatusBar-->
+    <sys:String x:Key="InitialLineCount">Número de líneas: 1</sys:String>
+    <sys:String x:Key="LineCount">Número de líneas</sys:String>
+    <sys:String x:Key="LineOne">Línea 1</sys:String>
+    <sys:String x:Key="CurrentLine">Línea </sys:String>
+    <sys:String x:Key="TextWrapping">Ajuste de línea</sys:String>
+    <sys:String x:Key="SpellCheck">Corrector ortográfico</sys:String>
+    <!--#endregion-->
+
+    <!--#region Font Settings-->
+    <sys:String x:Key="FontSettingsTitle">Fuente</sys:String>
+    <sys:String x:Key="FontName">Familia:</sys:String>
+    <sys:String x:Key="FontSize">Tamaño:</sys:String>
+    <sys:String x:Key="Sample">Muestra:</sys:String>
+    <sys:String x:Key="OkButton">Aceptar</sys:String>
+    <sys:String x:Key="CancelButton">Cancelar</sys:String>
+    <!--#endregion-->
+
+    <!--#region Find/Replace-->
+    <sys:String x:Key="FindReplaceTitle">Buscar/Reemplazar</sys:String>
+    <sys:String x:Key="FindTab">Buscar</sys:String>
+    <sys:String x:Key="ReplaceTab">Reemplazar</sys:String>
+    <sys:String x:Key="FindText">Buscar:</sys:String>
+    <sys:String x:Key="MatchCase">Coincidir mayúsculas y minúsculas</sys:String>
+    <sys:String x:Key="FindNextButton">Buscar siguiente</sys:String>
+    <sys:String x:Key="OriginalText">Texto original:</sys:String>
+    <sys:String x:Key="ReplaceWith">Reemplazar con:</sys:String>
+    <sys:String x:Key="ReplaceButton">Reemplazar</sys:String>
+    <sys:String x:Key="ReplaceAllButton">Reemplazar todo</sys:String>
+    <!--#endregion-->
+
+    <!--#region About-->
+    <sys:String x:Key="AboutTitle">Acerca de {0}</sys:String>
+    <sys:String x:Key="Author">Desarrollado por </sys:String>
+    <sys:String x:Key="Email">Correo: maxdr.mat@gmail.com</sys:String>
+    <sys:String x:Key="Description">Esta aplicación hace uso de las siguientes librerías:</sys:String>
+    <sys:String x:Key="Version">Versión: </sys:String>
+    <!--#endregion-->
+
+    <!--#region Content Dialog-->
+    <sys:String x:Key="Caption">Modern Notepad</sys:String>
+    <sys:String x:Key="SaveButton">Sí, guardar</sys:String>
+    <sys:String x:Key="NoSaveButton">No, descartar</sys:String>
+    <!--#endregion-->
+
+</ResourceDictionary>

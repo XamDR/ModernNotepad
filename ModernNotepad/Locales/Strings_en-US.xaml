@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <sys:String x:Key="AppTitle">Untitled - Modern Notepad</sys:String>
+    
+    <!--#region CommandBar-->
+    <sys:String x:Key="New">New</sys:String>    
+    <sys:String x:Key="Open">Open</sys:String>
+    <sys:String x:Key="Save">Save</sys:String>
+    <sys:String x:Key="Font">Font</sys:String>
+    <sys:String x:Key="Find">Find</sys:String>    
+    <sys:String x:Key="SaveAs">Save As</sys:String>
+    <sys:String x:Key="StatusBar">Status Bar</sys:String>
+    <sys:String x:Key="DarkTheme">Dark Theme</sys:String>
+    <sys:String x:Key="AboutModernNotepad">About</sys:String>
+    <sys:String x:Key="Close">Exit</sys:String>
+    <!--#endregion-->
+    
+    <!--#region ToolTips-->
+    <sys:String x:Key="NewWindowToolTip">Open a new window (Ctrl+Shift+N)</sys:String>
+    <sys:String x:Key="NewFileToolTip">Create new file (Ctrl+N)</sys:String>
+    <sys:String x:Key="OpenToolTip">Open file (Ctrl+A)</sys:String>
+    <sys:String x:Key="SaveToolTip">Save file (Ctrl+S)</sys:String>
+    <sys:String x:Key="FindToolTip">Find or replace text (Ctrl+F)</sys:String>
+    <sys:String x:Key="FontToolTip">Font settings</sys:String>
+    <sys:String x:Key="AboutToolTip">About Modern Notepad</sys:String>
+    <!--#endregion-->
+    
+    <!--#region StatusBar-->
+    <sys:String x:Key="InitialLineCount">Line Count: 1</sys:String>
+    <sys:String x:Key="LineCount">Line Count</sys:String>
+    <sys:String x:Key="LineOne">Line 1</sys:String>
+    <sys:String x:Key="CurrentLine">Line </sys:String>
+    <sys:String x:Key="TextWrapping">Text Wrapping</sys:String>
+    <sys:String x:Key="SpellCheck">Spell Check</sys:String>
+    <!--#endregion-->
+    
+    <!--#region Font Settings-->
+    <sys:String x:Key="FontSettingsTitle">Font Settings</sys:String>
+    <sys:String x:Key="FontName">Font:</sys:String>
+    <sys:String x:Key="FontSize">Size:</sys:String>
+    <sys:String x:Key="Sample">Sample:</sys:String>
+    <sys:String x:Key="OkButton">Ok</sys:String>
+    <sys:String x:Key="CancelButton">Cancel</sys:String>
+    <!--#endregion-->
+    
+    <!--#region Find/Replace-->
+    <sys:String x:Key="FindReplaceTitle">Find/Replace</sys:String>
+    <sys:String x:Key="FindTab">Find</sys:String>
+    <sys:String x:Key="ReplaceTab">Replace</sys:String>
+    <sys:String x:Key="FindText">Find:</sys:String>
+    <sys:String x:Key="MatchCase">Math case</sys:String>
+    <sys:String x:Key="FindNextButton">Find Next</sys:String>
+    <sys:String x:Key="OriginalText">Original text:</sys:String>
+    <sys:String x:Key="ReplaceWith">Replace with:</sys:String>
+    <sys:String x:Key="ReplaceButton">Replace</sys:String>
+    <sys:String x:Key="ReplaceAllButton">Replace All</sys:String>    
+    <!--#endregion-->
+    
+    <!--#region About-->
+    <sys:String x:Key="AboutTitle">About {0}</sys:String>
+    <sys:String x:Key="Author">Developed by </sys:String>
+    <sys:String x:Key="Email">Email: maxdr.mat@gmail.com</sys:String>
+    <sys:String x:Key="Description">This app makes use of the following libraries:</sys:String>
+    <sys:String x:Key="Version">Version: </sys:String>    
+    <!--#endregion-->
+    
+    <!--#region Content Dialog-->
+    <sys:String x:Key="Caption">Modern Notepad</sys:String>
+    <sys:String x:Key="SaveButton">Yes, save</sys:String>
+    <sys:String x:Key="NoSaveButton">No, discard</sys:String>    
+    <!--#endregion-->
+    
+</ResourceDictionary>
