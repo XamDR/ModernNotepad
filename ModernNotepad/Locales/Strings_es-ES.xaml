@@ -52,6 +52,9 @@
     <sys:String x:Key="FindText">Buscar:</sys:String>
     <sys:String x:Key="MatchCase">Coincidir mayúsculas y minúsculas</sys:String>
     <sys:String x:Key="FindNextButton">Buscar siguiente</sys:String>
+    <sys:String x:Key="SearchDirection">Dirección:</sys:String>
+    <sys:String x:Key="DirectionDown">Abajo</sys:String>
+    <sys:String x:Key="DirectionUp">Arriba</sys:String>
     <sys:String x:Key="OriginalText">Texto original:</sys:String>
     <sys:String x:Key="ReplaceWith">Reemplazar con:</sys:String>
     <sys:String x:Key="ReplaceButton">Reemplazar</sys:String>

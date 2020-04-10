@@ -2,9 +2,9 @@
 {
     public interface ITextArea
     {
+        int CaretIndex { get; set; }
         double FontSize { get; set; }
-        int SelectionLength { get; set; }
-        int SelectionStart { get; set; }
+        string SelectedText { get; set; }
         string Text { get; set; }
         void Clear();
         bool Focus();             

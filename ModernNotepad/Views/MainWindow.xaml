@@ -55,12 +55,12 @@
                     <ui:SymbolIcon Symbol="Save"/>
                 </ui:AppBarButton.Icon>
             </ui:AppBarButton>
-            <!--<ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
+            <ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
                              ToolTip="{DynamicResource FindToolTip}">
                 <ui:AppBarButton.Icon>
                     <ui:SymbolIcon Symbol="Find"/>
                 </ui:AppBarButton.Icon>
-            </ui:AppBarButton>-->
+            </ui:AppBarButton>
             <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
                              ToolTip="{DynamicResource FontToolTip}">
                 <ui:AppBarButton.Icon>
@@ -109,6 +109,7 @@
         </ui:CommandBar>
         
         <cc:TextArea x:Name="textArea" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                     IsInactiveSelectionHighlightEnabled="True"
                      SpellCheck.IsEnabled="{Binding IsSpellCheckingEnabled}" Style="{StaticResource ModernTextBoxStyle}"
                      TextWrapping="{Binding IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
             <i:Interaction.Behaviors>

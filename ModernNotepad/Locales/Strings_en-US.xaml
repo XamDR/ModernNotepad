@@ -50,8 +50,11 @@
     <sys:String x:Key="FindTab">Find</sys:String>
     <sys:String x:Key="ReplaceTab">Replace</sys:String>
     <sys:String x:Key="FindText">Find:</sys:String>
-    <sys:String x:Key="MatchCase">Math case</sys:String>
+    <sys:String x:Key="MatchCase">Match case</sys:String>
     <sys:String x:Key="FindNextButton">Find Next</sys:String>
+    <sys:String x:Key="SearchDirection">Direction:</sys:String>
+    <sys:String x:Key="DirectionDown">Down</sys:String>
+    <sys:String x:Key="DirectionUp">Up</sys:String>
     <sys:String x:Key="OriginalText">Original text:</sys:String>
     <sys:String x:Key="ReplaceWith">Replace with:</sys:String>
     <sys:String x:Key="ReplaceButton">Replace</sys:String>

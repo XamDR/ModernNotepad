@@ -18,7 +18,8 @@
                     </ui:ThemeResources.ThemeDictionaries>
                 </ui:ThemeResources>
                 <ui:XamlControlsResources/>
-                <ResourceDictionary Source="/CustomControls/ModernTextBoxStyle.xaml"/>                
+                <ResourceDictionary Source="/CustomControls/ModernTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Locales/Strings_en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -17,7 +17,7 @@ namespace ModernNotepadLibrary.ViewModels
         /// <param name="newValue">The new value.</param>
         /// <param name="propertyName">Returns true if the value changed, otherwise returns false.</param>
         /// <returns></returns>
-        protected bool Set<T>(ref T oldValue, T newValue, [CallerMemberName]string propertyName = "")
+        protected bool Set<T>(ref T oldValue, T newValue, [CallerMemberName]string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
             {
@@ -32,7 +32,7 @@ namespace ModernNotepadLibrary.ViewModels
         /// Called when a property in the ViewModel changes. Can be overriden in a derived class.
         /// </summary>
         /// <param name="propertyName"></param>
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public event PropertyChangedEventHandler PropertyChanged;
