@@ -22,7 +22,11 @@
     <sys:String x:Key="NewFileToolTip">Crear archivo nuevo (Ctrl+N)</sys:String>
     <sys:String x:Key="OpenToolTip">Abrir archivo (Ctrl+A)</sys:String>
     <sys:String x:Key="SaveToolTip">Guardar archivo (Ctrl+S)</sys:String>
-    <sys:String x:Key="FindToolTip">Buscar o reemplazar texto (Ctrl+F)</sys:String>
+    <sys:String x:Key="FindToolTip">Buscar o reemplazar texto (Ctrl+B)</sys:String>
+    <sys:String x:Key="FindNextButtonTooltip">Buscar siguiente (Ctrl+F)</sys:String>
+    <sys:String x:Key="FindPreviousButtonTooltip">Buscar anterior (Ctrl+Shift+F)</sys:String>
+    <sys:String x:Key="ReplaceButtonTooltip">Reemplazar (Ctrl+R)</sys:String>
+    <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo (Ctrl+Shift+R)</sys:String>
     <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
     <sys:String x:Key="AboutToolTip">Acerca de Modern Notepad</sys:String>
     <!--#endregion-->
@@ -46,16 +50,10 @@
     <!--#endregion-->
 
     <!--#region Find/Replace-->
-    <sys:String x:Key="FindReplaceTitle">Buscar/Reemplazar</sys:String>
-    <sys:String x:Key="FindTab">Buscar</sys:String>
-    <sys:String x:Key="ReplaceTab">Reemplazar</sys:String>
-    <sys:String x:Key="FindText">Buscar:</sys:String>
+    <sys:String x:Key="FindReplaceTitle">Buscar/Reemplazar</sys:String>    
     <sys:String x:Key="MatchCase">Coincidir mayúsculas y minúsculas</sys:String>
-    <sys:String x:Key="FindNextButton">Buscar siguiente</sys:String>
-    <sys:String x:Key="OriginalText">Texto original:</sys:String>
-    <sys:String x:Key="ReplaceWith">Reemplazar con:</sys:String>
-    <sys:String x:Key="ReplaceButton">Reemplazar</sys:String>
-    <sys:String x:Key="ReplaceAllButton">Reemplazar todo</sys:String>
+    <sys:String x:Key="OriginalText">Texto original</sys:String>
+    <sys:String x:Key="ReplaceWith">Reemplazar con</sys:String>
     <!--#endregion-->
 
     <!--#region About-->

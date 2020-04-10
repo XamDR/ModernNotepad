@@ -18,12 +18,16 @@
     <!--#endregion-->
     
     <!--#region ToolTips-->
-    <sys:String x:Key="NewWindowToolTip">Open a new window (Ctrl+Shift+N)</sys:String>
-    <sys:String x:Key="NewFileToolTip">Create new file (Ctrl+N)</sys:String>
-    <sys:String x:Key="OpenToolTip">Open file (Ctrl+A)</sys:String>
-    <sys:String x:Key="SaveToolTip">Save file (Ctrl+S)</sys:String>
-    <sys:String x:Key="FindToolTip">Find or replace text (Ctrl+F)</sys:String>
-    <sys:String x:Key="FontToolTip">Font settings</sys:String>
+    <sys:String x:Key="NewWindowToolTip">Open a New Window (Ctrl+Shift+N)</sys:String>
+    <sys:String x:Key="NewFileToolTip">Create New File (Ctrl+N)</sys:String>
+    <sys:String x:Key="OpenToolTip">Open File (Ctrl+A)</sys:String>
+    <sys:String x:Key="SaveToolTip">Save File (Ctrl+S)</sys:String>
+    <sys:String x:Key="FindToolTip">Find or Replace Text (Ctrl+F)</sys:String>
+    <sys:String x:Key="FindNextButtonTooltip">Find Next (Ctrl+F)</sys:String>
+    <sys:String x:Key="FindPreviousButtonTooltip">Find Previous (Ctrl+Shift+F)</sys:String>
+    <sys:String x:Key="ReplaceButtonTooltip">Replace (Ctrl+R)</sys:String>
+    <sys:String x:Key="ReplaceAllButtonTooltip">Replace All (Ctrl+Shift+R)</sys:String>
+    <sys:String x:Key="FontToolTip">Font Settings</sys:String>
     <sys:String x:Key="AboutToolTip">About Modern Notepad</sys:String>
     <!--#endregion-->
     
@@ -47,15 +51,9 @@
     
     <!--#region Find/Replace-->
     <sys:String x:Key="FindReplaceTitle">Find/Replace</sys:String>
-    <sys:String x:Key="FindTab">Find</sys:String>
-    <sys:String x:Key="ReplaceTab">Replace</sys:String>
-    <sys:String x:Key="FindText">Find:</sys:String>
-    <sys:String x:Key="MatchCase">Math case</sys:String>
-    <sys:String x:Key="FindNextButton">Find Next</sys:String>
-    <sys:String x:Key="OriginalText">Original text:</sys:String>
-    <sys:String x:Key="ReplaceWith">Replace with:</sys:String>
-    <sys:String x:Key="ReplaceButton">Replace</sys:String>
-    <sys:String x:Key="ReplaceAllButton">Replace All</sys:String>    
+    <sys:String x:Key="MatchCase">Match case</sys:String>
+    <sys:String x:Key="OriginalText">Original text</sys:String>
+    <sys:String x:Key="ReplaceWith">Replace with</sys:String> 
     <!--#endregion-->
     
     <!--#region About-->
