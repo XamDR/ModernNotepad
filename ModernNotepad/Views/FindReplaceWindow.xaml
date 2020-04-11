@@ -6,76 +6,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="{DynamicResource FindReplaceTitle}" 
-        Height="270" Width="450"
+        Height="160" Width="320"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         FocusManager.FocusedElement="{Binding ElementName=searchBox}"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        ui:WindowHelper.UseModernWindowStyle="True">    
     <Grid>
-        <TabControl >
-            <TabItem Header="{DynamicResource FindTab}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-                    <TextBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" MinWidth="100" Name="searchBox" Margin="10,20"
-                             ui:ControlHelper.Header="{DynamicResource FindText}" Text="{Binding TextToFind}"/>
-                    <Button Grid.Column="3" Grid.Row="0" Content="_Buscar" Margin="0 24 10 0" IsDefault="True" MinWidth="100"
-                            Command="{Binding FindTextCommand}"/>
+        <TextBox Grid.Column="0" Grid.Row="0" Name="searchBox" Margin="10,5,10,5" MinWidth="200" MaxHeight="20" 
+                 ui:ControlHelper.PlaceholderText="{DynamicResource OriginalText}" Text="{Binding TextToSearch}"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="&#xE112;" FontFamily="Segoe MDL2 Assets"
+                Margin="5,0" ToolTip="{DynamicResource FindPreviousButtonTooltip}" Command="{Binding FindTextCommand}"/>
+        <Button Grid.Column="2" Grid.Row="0" Content="&#xE111;" FontFamily="Segoe MDL2 Assets"
+                ToolTip="{DynamicResource FindNextButtonTooltip}" Command="{Binding FindTextCommand}"/>        
 
-                    <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10 10 0 0"
-                              Content="{DynamicResource MatchCase}" VerticalAlignment="Center" 
-                              IsChecked="{Binding IsCaseChecked}"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="10,5,10,5" MinWidth="200" MaxHeight="20"
+                 ui:ControlHelper.PlaceholderText="{DynamicResource ReplaceWith}" Text="{Binding TextToReplace}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets"
+                ToolTip="{DynamicResource ReplaceButtonTooltip}" Margin="5,0" Command="{Binding ReplaceTextCommand}"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="&#xE7FD;" FontFamily="Segoe MDL2 Assets"
+                ToolTip="{DynamicResource ReplaceAllButtonTooltip}" Command="{Binding ReplaceAllTextCommand}"/>
 
-                    <GroupBox Grid.Column="2" Grid.Row="1" Header="{DynamicResource SearchDirection}" VerticalAlignment="Center">
-                        <StackPanel Orientation="Vertical">
-                            <RadioButton Content="{DynamicResource DirectionDown}" Margin="5 0 10 0"/>
-                            <RadioButton Content="{DynamicResource DirectionUp}" Margin="5 0 10 0"/>
-                        </StackPanel>
-                    </GroupBox>
-                    <Button Grid.Column="3" Grid.Row="1" Content="{DynamicResource CancelButton}" IsCancel="True" 
-                            MinWidth="100" Margin="0,10,0,0"
-                            Command="{Binding CloseWindowCommand}"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="{DynamicResource ReplaceTab}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <TextBox Grid.Column="0" Grid.Row="0" Margin="10,5,10,5" MinWidth="100"
-                             ui:ControlHelper.Header="{DynamicResource OriginalText}" Text="{Binding TextToFind}"/>
-                    <Button Grid.Column="1" Content="{DynamicResource ReplaceButton}" Margin="0,23,10,0" MinWidth="123"
-                            Command="{Binding ReplaceTextCommand}"/>
-                    
-                    <TextBox Grid.Column="0" Grid.Row="1" Margin="10,0,10,10" MinWidth="100"
-                             ui:ControlHelper.Header="{DynamicResource ReplaceWith}" Text="{Binding TextToReplace}"/>
-                    <Button Grid.Column="1" Grid.Row="1" Content="{DynamicResource ReplaceAllButton}" 
-                            Margin="0,13,10,0" IsDefault="True" Command="{Binding ReplaceAllTextCommand}"/>
-
-                    <CheckBox Grid.Column="0" Grid.Row="2" Margin="10,5,0,0"
-                              Content="{DynamicResource MatchCase}" VerticalAlignment="Center"
-                              IsChecked="{Binding MatchCase}"/>
-                    <Button Grid.Column="1" Grid.Row="2" MinWidth="123" Content="{DynamicResource CancelButton}" 
-                            Margin="0,5,10,0" IsCancel="True" Command="{Binding CloseWindowCommand}"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <CheckBox Grid.Column="0" Grid.Row="2" Margin="10,0,0,0" Grid.ColumnSpan="2" Content="{DynamicResource MatchCase}" 
+                  VerticalAlignment="Center" IsChecked="{Binding IsCaseEnabled}"/>
     </Grid>
 </Window>
