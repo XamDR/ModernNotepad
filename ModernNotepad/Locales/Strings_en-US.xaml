@@ -53,7 +53,8 @@
     <sys:String x:Key="FindReplaceTitle">Find/Replace</sys:String>
     <sys:String x:Key="MatchCase">Match case</sys:String>
     <sys:String x:Key="OriginalText">Original text</sys:String>
-    <sys:String x:Key="ReplaceWith">Replace with</sys:String> 
+    <sys:String x:Key="ReplaceWith">Replace with</sys:String>
+    <sys:String x:Key="NoFindResults">It could not find the text</sys:String>
     <!--#endregion-->
     
     <!--#region About-->

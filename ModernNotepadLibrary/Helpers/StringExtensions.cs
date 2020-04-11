@@ -7,12 +7,12 @@ namespace ModernNotepadLibrary.Helpers
 {
     static class StringExtensions
     {
-        public static List<int> AllIndexesOf(this string str, string value, StringComparison comparisonType) 
+        public static IEnumerable<int> AllIndexesOf(this string str, string value, StringComparison comparisonType) 
             => comparisonType == StringComparison.OrdinalIgnoreCase
-                ? Regex.Matches(str, value, RegexOptions.IgnoreCase).Select(m => m.Index).ToList()
-                : Regex.Matches(str, value).Select(m => m.Index).ToList();
+                ? Regex.Matches(str, value, RegexOptions.IgnoreCase).Select(m => m.Index)
+                : Regex.Matches(str, value).Select(m => m.Index);
 
-        public static List<int> AllIndexesOf(this string str, string value) 
+        public static IEnumerable<int> AllIndexesOf(this string str, string value) 
             => str.AllIndexesOf(value, StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -9,7 +9,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public FontSettingsWindowViewModel(MainWindowViewModel mainViewModel) => this.mainViewModel = mainViewModel;
 
-        private string selectedFontName = "Segoe UI";
+        private string selectedFontName = "Consolas";
 
         public string SelectedFontName
         {

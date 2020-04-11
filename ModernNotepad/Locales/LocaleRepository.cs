@@ -19,7 +19,6 @@ namespace ModernNotepad.Locales
                 { "FilterTxt", "Plain Text Files" },
                 { "FilterAll", "All Files" },
                 { "ConfirmationQuestion", "Would you like to save the changes made in the file?" },
-                { "NoFindResults", "It could not find the text" },
                 { "AppDescription", EnglishDescription },
                 { "AppTitle", "Untitled" },
             };
@@ -30,7 +29,6 @@ namespace ModernNotepad.Locales
                 { "FilterTxt", "Documento de texto" },
                 { "FilterAll", "Todos los archivos" },
                 { "ConfirmationQuestion", "¿Quieres guardar los cambios hechos en el archivo?" },
-                { "NoFindResults", "No se pudo encontrar el texto" },
                 { "AppDescription", SpanishDescription },
                 { "AppTitle", "Sín título" }
             };

@@ -1,8 +1,7 @@
 ﻿using ModernNotepadLibrary.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
@@ -22,15 +21,15 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref matchCase, value);
         }
 
-        private SearchDirection searchDirection;
-
-        public SearchDirection SearchDirection
+        private bool textNotFound;
+        
+        public bool TextNotFound
         {
-            get => SearchDirection;
-            set => Set(ref searchDirection, value);
+            get => textNotFound;
+            set => Set(ref textNotFound, value);
         }
 
-        private string textToFind;
+        private string textToFind = string.Empty;
 
         public string TextToFind
         {
@@ -38,7 +37,7 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref textToFind, value);
         }
 
-        private string textToReplace;
+        private string textToReplace = string.Empty;
 
         public string TextToReplace
         {
@@ -46,32 +45,23 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref textToReplace, value);            
         }
 
-        public ICommand CloseWindowCommand => new DelegateCommand(CloseWindow);
+        public ICommand FindNextCommand => new DelegateCommand(FindNext);
 
-        public ICommand FindTextCommand => new DelegateCommand(FindNext);
+        public ICommand FindPreviousCommand => new DelegateCommand(FindPrevious);
 
         public ICommand ReplaceAllTextCommand => new DelegateCommand(ReplaceAllText);
 
         public ICommand ReplaceTextCommand => new DelegateCommand(ReplaceText);
 
-        private void CloseWindow() => mainViewModel.WindowService.Close(GetType());
-
-        private async void FindNext()
+        private void FindNext()
         {
             var textArea = mainViewModel.TextEditor.TextArea;
             var text = textArea.Text;
-
-            if (SearchDirection == SearchDirection.Down)
-            {
-                
-            }
-            var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal) : text.AllIndexesOf(TextToFind);
-            //var indexes = MatchCase ? Regex.Matches(text, TextToFind).Select(m => m.Index).ToList()
-            //                        : Regex.Matches(text, TextToFind, RegexOptions.IgnoreCase).Select(m => m.Index).ToList();
+            var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal).ToList() 
+                                    : text.AllIndexesOf(TextToFind).ToList();            
 
             var result = MatchCase ? text.Contains(TextToFind, StringComparison.Ordinal)
                                    : text.Contains(TextToFind, StringComparison.OrdinalIgnoreCase);
-
             if (result)
             {   
                 if (index >= indexes.Count)
@@ -92,47 +82,42 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                var message = $"{mainViewModel.LocaleManager.LoadString("NoFindResults")} '{TextToFind}'.";
-                await mainViewModel.DialogService.ShowInformationAsync(message);
+                TextNotFound = true;
             }
         }
 
-        //private async void FindPrevious()
-        //{
-        //    var textArea = mainViewModel.TextEditor.TextArea;
-        //    var text = textArea.Text;
-        //    var indexes = MatchCase ? Regex.Matches(text, TextToFind).Select(m => m.Index)
-        //                                                             .OrderByDescending(i => i).ToList()
-        //                            : Regex.Matches(text, TextToFind, RegexOptions.IgnoreCase).Select(m => m.Index)
-        //                                                                                      .OrderByDescending(i => i).ToList();
+        private void FindPrevious()
+        {
+            var textArea = mainViewModel.TextEditor.TextArea;
+            var text = textArea.Text;
+            var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal).OrderByDescending(i => i).ToList() 
+                                    : text.AllIndexesOf(TextToFind).OrderByDescending(i => i).ToList();            
 
-        //    var result = MatchCase ? text.Contains(TextToFind, StringComparison.Ordinal)
-        //                           : text.Contains(TextToFind, StringComparison.OrdinalIgnoreCase);
+            var result = MatchCase ? text.Contains(TextToFind, StringComparison.Ordinal)
+                                   : text.Contains(TextToFind, StringComparison.OrdinalIgnoreCase);
+            if (result)
+            {
+                if (index >= indexes.Count)
+                {
+                    index = 0;
+                }
+                textArea.Focus();
 
-        //    if (result)
-        //    {
-        //        if (index >= indexes.Count)
-        //        {
-        //            index = 0;
-        //        }
-        //        textArea.Focus();
-
-        //        if (MatchCase)
-        //        {                    
-        //            textArea.Select(text.IndexOf(TextToFind, indexes[index], StringComparison.Ordinal), TextToFind.Length);
-        //        }
-        //        else
-        //        {
-        //            textArea.Select(text.IndexOf(TextToFind, indexes[index], StringComparison.OrdinalIgnoreCase), TextToFind.Length);
-        //        }
-        //        index++;
-        //    }
-        //    else
-        //    {
-        //        var message = $"{mainViewModel.LocaleManager.LoadString("NoFindResults")} '{TextToFind}'.";
-        //        await mainViewModel.DialogService.ShowInformationAsync(message);
-        //    }
-        //}
+                if (MatchCase)
+                {
+                    textArea.Select(text.IndexOf(TextToFind, indexes[index], StringComparison.Ordinal), TextToFind.Length);
+                }
+                else
+                {
+                    textArea.Select(text.IndexOf(TextToFind, indexes[index], StringComparison.OrdinalIgnoreCase), TextToFind.Length);
+                }
+                index++;
+            }
+            else
+            {
+                TextNotFound = true;
+            }
+        }
 
         private void ReplaceAllText()
         {
@@ -144,18 +129,14 @@ namespace ModernNotepadLibrary.ViewModels
             mainViewModel.TextEditor.TextArea.Text = newText;
         }
         
-        private async void ReplaceText()
+        private void ReplaceText()
         {
             var textArea = mainViewModel.TextEditor.TextArea;
             var text = textArea.Text;
-
             var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal) : text.AllIndexesOf(TextToFind);
-            //var indexes = MatchCase ? Regex.Matches(text, TextToFind).Select(m => m.Index).ToList()
-            //                        : Regex.Matches(text, TextToFind, RegexOptions.IgnoreCase).Select(m => m.Index).ToList();
-
+            
             var result = MatchCase ? text.Contains(TextToFind, StringComparison.Ordinal)
                                    : text.Contains(TextToFind, StringComparison.OrdinalIgnoreCase);
-
             if (result)
             {
                 var bestIndex = indexes.FirstOrDefault(i => i >= textArea.CaretIndex);
@@ -173,15 +154,8 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                var message = $"{mainViewModel.LocaleManager.LoadString("NoFindResults")} '{TextToFind}'.";
-                await mainViewModel.DialogService.ShowInformationAsync(message);
+                TextNotFound = true;
             }
         }
-    }
-
-    public enum SearchDirection
-    {
-        Down,
-        Up
     }
 }

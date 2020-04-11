@@ -35,6 +35,7 @@ namespace ModernNotepad.Dialogs
                 Content = message,
                 CloseButtonText = (string)Application.Current.TryFindResource("OkButton"),
                 Title = Application.Current.TryFindResource("Caption"),
+                Owner = Application.Current.MainWindow,
             };
             await dialog.ShowAsync();
         }
