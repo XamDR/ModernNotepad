@@ -1,7 +1,6 @@
 ﻿using ModernNotepadLibrary.Helpers;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
@@ -19,15 +18,7 @@ namespace ModernNotepadLibrary.ViewModels
         {
             get => matchCase;
             set => Set(ref matchCase, value);
-        }
-
-        private bool textNotFound;
-        
-        public bool TextNotFound
-        {
-            get => textNotFound;
-            set => Set(ref textNotFound, value);
-        }
+        }        
 
         private string textToFind = string.Empty;
 
@@ -82,7 +73,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                TextNotFound = true;
+                mainViewModel.ShouldPopupBeOpen = true;
             }
         }
 
@@ -115,7 +106,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                TextNotFound = true;
+                mainViewModel.ShouldPopupBeOpen = true;
             }
         }
 
@@ -154,7 +145,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                TextNotFound = true;
+                mainViewModel.ShouldPopupBeOpen = true;
             }
         }
     }

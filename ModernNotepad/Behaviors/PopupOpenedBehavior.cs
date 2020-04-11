@@ -23,10 +23,9 @@ namespace ModernNotepad.Behaviors
 
         private async void OnPopupOpened(object sender, EventArgs e)
         {
-            var child = (Border)AssociatedObject.Child;
-            var target = (Window)AssociatedObject.PlacementTarget;
-            AssociatedObject.HorizontalOffset = (target.Width - child.ActualWidth) / 2;            
-            AssociatedObject.VerticalOffset = (Application.Current.MainWindow.Height - target.Height) / 2 - 100;
+            var child = (Border)AssociatedObject.Child;            
+            AssociatedObject.HorizontalOffset = (Application.Current.MainWindow.ActualWidth - child.ActualWidth) / 2;
+            AssociatedObject.VerticalOffset = -100.0;
 
             await Task.Delay(2000);
             AssociatedObject.IsOpen = false;

@@ -43,18 +43,5 @@
 
         <CheckBox Grid.Column="0" Grid.Row="2" Margin="10,0,0,0" Grid.ColumnSpan="2" Content="{DynamicResource MatchCase}" 
                   VerticalAlignment="Center" IsChecked="{Binding MatchCase}"/>
-
-        <Popup AllowsTransparency="True" Placement="Bottom" PopupAnimation="Fade" IsOpen="{Binding TextNotFound}"
-               PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
-            <Border BorderBrush="#323232" BorderThickness="1" CornerRadius="5" Background="#323232" Padding="10">
-                <TextBlock>
-                    <Run Text="{DynamicResource NoFindResults}"/>
-                    <Run Text="{Binding TextToFind, StringFormat=' &quot;\{0\}&quot;'}"/>
-                </TextBlock>
-            </Border>
-            <i:Interaction.Behaviors>
-                <behaviors:PopupOpenedBehavior/>
-            </i:Interaction.Behaviors>
-        </Popup>
     </Grid>
 </Window>

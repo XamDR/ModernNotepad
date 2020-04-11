@@ -10,7 +10,6 @@ namespace ModernNotepadLibrary.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {        
         private readonly AboutWindowViewModel aboutWindow;
-        private readonly FindReplaceWindowViewModel findReplace;
         private readonly FontSettingsWindowViewModel fontSettings;
         private bool closing = false; //we need to use this variable because ContentDialog.ShowAsync() is an async method.
 
@@ -19,9 +18,11 @@ namespace ModernNotepadLibrary.ViewModels
             TextEditor = new TextEditor(this);
             UserSettings = new UserSettings();
             aboutWindow = new AboutWindowViewModel(this);
-            findReplace = new FindReplaceWindowViewModel(this);
+            FindReplace = new FindReplaceWindowViewModel(this);
             fontSettings = new FontSettingsWindowViewModel(this);
         }
+
+        public FindReplaceWindowViewModel FindReplace { get; }
 
         public TextEditor TextEditor { get; }
 
@@ -87,6 +88,14 @@ namespace ModernNotepadLibrary.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+
+        private bool shouldPopupBeOpen;
+
+        public bool ShouldPopupBeOpen
+        {
+            get => shouldPopupBeOpen;
+            set => Set(ref shouldPopupBeOpen, value);
         }
 
         private string title;
@@ -155,7 +164,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         private void ShowAboutWindow() => WindowService.ShowDialog(aboutWindow, typeof(AboutWindowViewModel));
 
-        private void ShowFindReplaceWindow() => WindowService.Show(findReplace, typeof(FindReplaceWindowViewModel));
+        private void ShowFindReplaceWindow() => WindowService.Show(FindReplace, typeof(FindReplaceWindowViewModel));
 
         private void ShowFontSettingsWindow() 
             => WindowService.ShowDialog(fontSettings, typeof(FontSettingsWindowViewModel));
