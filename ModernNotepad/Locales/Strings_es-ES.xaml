@@ -34,8 +34,10 @@
     <!--#region StatusBar-->
     <sys:String x:Key="InitialLineCount">Número de líneas: 1</sys:String>
     <sys:String x:Key="LineCount">Número de líneas</sys:String>
-    <sys:String x:Key="LineOne">Línea 1</sys:String>
+    <sys:String x:Key="LineOne">Línea: 1</sys:String>
+    <sys:String x:Key="CharOne">Carácter: 1</sys:String>
     <sys:String x:Key="CurrentLine">Línea </sys:String>
+    <sys:String x:Key="CurrentChar">Carácter</sys:String>
     <sys:String x:Key="TextWrapping">Ajuste de línea</sys:String>
     <sys:String x:Key="SpellCheck">Corrector ortográfico</sys:String>
     <!--#endregion-->
@@ -61,6 +63,7 @@
     <sys:String x:Key="AboutTitle">Acerca de {0}</sys:String>
     <sys:String x:Key="Author">Desarrollado por </sys:String>
     <sys:String x:Key="Email">Correo: maxdr.mat@gmail.com</sys:String>
+    <sys:String x:Key="GitHub">El código fuente está disponible en GitHub:</sys:String>
     <sys:String x:Key="Description">Esta aplicación hace uso de las siguientes librerías:</sys:String>
     <sys:String x:Key="Version">Versión: </sys:String>
     <!--#endregion-->

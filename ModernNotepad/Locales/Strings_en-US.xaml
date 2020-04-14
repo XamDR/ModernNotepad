@@ -34,8 +34,10 @@
     <!--#region StatusBar-->
     <sys:String x:Key="InitialLineCount">Line Count: 1</sys:String>
     <sys:String x:Key="LineCount">Line Count</sys:String>
-    <sys:String x:Key="LineOne">Line 1</sys:String>
+    <sys:String x:Key="LineOne">Line: 1</sys:String>
+    <sys:String x:Key="CharOne">Char: 1</sys:String>
     <sys:String x:Key="CurrentLine">Line </sys:String>
+    <sys:String x:Key="CurrentChar">Char</sys:String>
     <sys:String x:Key="TextWrapping">Text Wrapping</sys:String>
     <sys:String x:Key="SpellCheck">Spell Check</sys:String>
     <!--#endregion-->
@@ -61,6 +63,7 @@
     <sys:String x:Key="AboutTitle">About {0}</sys:String>
     <sys:String x:Key="Author">Developed by </sys:String>
     <sys:String x:Key="Email">Email: maxdr.mat@gmail.com</sys:String>
+    <sys:String x:Key="GitHub">The source code is available at Github:</sys:String>
     <sys:String x:Key="Description">This app makes use of the following libraries:</sys:String>
     <sys:String x:Key="Version">Version: </sys:String>    
     <!--#endregion-->

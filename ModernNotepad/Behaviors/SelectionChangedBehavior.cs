@@ -6,8 +6,17 @@ namespace ModernNotepad.Behaviors
 {
     class SelectionChangedBehavior : Behavior<TextBox>
     {
+        public static readonly DependencyProperty CurrentCharacterProperty =
+            DependencyProperty.Register("CurrentCharacter", typeof(string), typeof(SelectionChangedBehavior), new PropertyMetadata(null));
+
+        public string CurrentCharacter
+        {
+            get => (string)GetValue(CurrentCharacterProperty);
+            set => SetValue(CurrentCharacterProperty, value);
+        }
+
         public static readonly DependencyProperty CurrentLineProperty =
-            DependencyProperty.Register("CurrentLine", typeof(string), typeof(SelectionChangedBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("CurrentLine", typeof(string), typeof(SelectionChangedBehavior), new PropertyMetadata(null));        
 
         public string CurrentLine
         {
@@ -32,6 +41,11 @@ namespace ModernNotepad.Behaviors
             var charIndex = AssociatedObject.SelectionStart;
             var currentLine = AssociatedObject.GetLineIndexFromCharacterIndex(charIndex) + 1;
             CurrentLine = $"{Application.Current.TryFindResource("CurrentLine")}: {currentLine}";
+
+            var firstCharIndex = AssociatedObject.GetCharacterIndexFromLineIndex(currentLine - 1);
+            var currentCharacter = charIndex - firstCharIndex + 1;
+            CurrentCharacter = $"{Application.Current.TryFindResource("CurrentChar")}: {currentCharacter}";
+
         }
     }
 }

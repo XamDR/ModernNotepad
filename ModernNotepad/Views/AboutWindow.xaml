@@ -23,19 +23,27 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>        
+        </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding AssemblyProduct}" Margin="10,5" Foreground="MediumPurple" FontSize="20"/>
+        <TextBlock Grid.Row="0" Text="{Binding AssemblyProduct}" Margin="10" Foreground="MediumPurple" FontSize="20"/>
         <TextBlock Grid.Row="1" Margin="10,5">
             <Run Text="{DynamicResource Author}"/>
-            <Run Text="{Binding AssemblyCompany, Mode=OneWay, StringFormat='\{0\}. '}"/>
+            <Run Text="{Binding AssemblyCompany, Mode=OneWay, StringFormat='\{0\}.'}"/>
             <Run Text="{DynamicResource Email}"/>
         </TextBlock>
         <TextBlock Grid.Row="2" Margin="10,5">
-            <Run Text="{DynamicResource Version}"/>            
-            <Run Text="{Binding AssemblyVersion, Mode=OneWay}"/>
+            <Run Text="{DynamicResource GitHub}"/>
+            <Hyperlink NavigateUri="https://github.com/XamDR/ModernNotepad" Command="{Binding OpenHyperlinkCommand}"
+                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}"
+                       ToolTip="https://github.com/XamDR/ModernNotepad">
+                ModernNotepad
+            </Hyperlink>
         </TextBlock>
-        <TextBlock Grid.Row="3" Text="{Binding AssemblyCopyright}" Margin="10,5"/>
+        <TextBlock Grid.Row="3" Margin="10,5">
+            <Run Text="{DynamicResource Version}"/>            
+            <Run Text="{Binding AssemblyVersion, Mode=OneWay, StringFormat='\{0\}.'}"/>
+            <Run Text="{Binding AssemblyCopyright, Mode=OneWay}"/>
+        </TextBlock>
         <TextBlock Grid.Row="4" TextWrapping="WrapWithOverflow" Margin="10,5">
             <Run Text="{Binding AssemblyDescription, Mode=OneWay}"/>
             <LineBreak/>
@@ -43,12 +51,14 @@
             <Run Text="{DynamicResource Description}"/>
             <LineBreak/>
             <Hyperlink NavigateUri="https://github.com/Kinnara/ModernWpf" Command="{Binding OpenHyperlinkCommand}"
-                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}">
+                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}"
+                       ToolTip="https://github.com/Kinnara/ModernWpf">
                 ModernWpf
             </Hyperlink>
             <LineBreak/>
             <Hyperlink NavigateUri="https://github.com/microsoft/XamlBehaviorsWpf" Command="{Binding OpenHyperlinkCommand}"
-                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}">
+                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=NavigateUri}"
+                       ToolTip="https://github.com/microsoft/XamlBehaviorsWpf">
                 XamlBehaviorsWpf
             </Hyperlink>
         </TextBlock>
