@@ -25,10 +25,10 @@
     <sys:String x:Key="SaveToolTip">Guardar archivo (Ctrl+S)</sys:String>
     <sys:String x:Key="SaveAsToolTip">Guardar archivo como (Ctrl+S)</sys:String>
     <sys:String x:Key="FindToolTip">Buscar o reemplazar texto (Ctrl+B)</sys:String>
-    <sys:String x:Key="FindNextButtonTooltip">Buscar siguiente (Ctrl+F)</sys:String>
-    <sys:String x:Key="FindPreviousButtonTooltip">Buscar anterior (Ctrl+Shift+F)</sys:String>
-    <sys:String x:Key="ReplaceButtonTooltip">Reemplazar (Ctrl+R)</sys:String>
-    <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo (Ctrl+Shift+R)</sys:String>
+    <sys:String x:Key="FindNextButtonTooltip">Buscar siguiente</sys:String>
+    <sys:String x:Key="FindPreviousButtonTooltip">Buscar anterior</sys:String>
+    <sys:String x:Key="ReplaceButtonTooltip">Reemplazar</sys:String>
+    <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo</sys:String>
     <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
     <sys:String x:Key="FormatToolTip">Formato del texto</sys:String>
     <sys:String x:Key="TextWrappingToolTip">Habilitar ajuste de línea</sys:String>
