@@ -38,6 +38,7 @@ namespace ModernNotepadLibrary.Core
                     case false:
                         TextArea.Clear();
                         mainViewModel.Title = string.Empty;
+                        mainViewModel.FilePath = mainViewModel.LocaleManager.LoadString("NewDocument");
                         SavedAsFile = false;
                         return;
                     case null: return;
@@ -47,6 +48,7 @@ namespace ModernNotepadLibrary.Core
             {
                 TextArea.Clear();
                 mainViewModel.Title = mainViewModel.LocaleManager.LoadString("AppTitle");
+                mainViewModel.FilePath = mainViewModel.LocaleManager.LoadString("NewDocument");
                 SavedAsFile = false;
             }
         }
@@ -60,6 +62,7 @@ namespace ModernNotepadLibrary.Core
                 SavedAsFile = true;
                 TextArea.Text = File.ReadAllText(mainViewModel.OpenFileService.FileName, Encoding.Default);
                 mainViewModel.Title = Path.GetFileName(mainViewModel.OpenFileService.FileName);
+                mainViewModel.FilePath = Path.GetFullPath(mainViewModel.OpenFileService.FileName);
             }
         }
 
@@ -71,6 +74,7 @@ namespace ModernNotepadLibrary.Core
                 if (mainViewModel.SaveFileService.ShowDialog() == true && mainViewModel.SaveFileService.FileName.Length > 0)
                 {
                     mainViewModel.Title = Path.GetFileName(mainViewModel.SaveFileService.FileName);
+                    mainViewModel.FilePath = Path.GetFullPath(mainViewModel.SaveFileService.FileName);
                 }
                 else
                 {
@@ -82,6 +86,7 @@ namespace ModernNotepadLibrary.Core
                 mainViewModel.SaveFileService.FileName = mainViewModel.OpenFileService.FileName;
             }
             mainViewModel.Title = Path.GetFileName(mainViewModel.SaveFileService.FileName);
+            mainViewModel.FilePath = Path.GetFullPath(mainViewModel.SaveFileService.FileName);
             UnsavedChanges = false;
             File.WriteAllText(mainViewModel.SaveFileService.FileName, TextArea.Text, Encoding.Default);
             SavedAsFile = true;
@@ -95,6 +100,7 @@ namespace ModernNotepadLibrary.Core
             {
                 File.WriteAllText(mainViewModel.SaveFileService.FileName, TextArea.Text, Encoding.Default);
                 mainViewModel.Title = Path.GetFileName(mainViewModel.SaveFileService.FileName);
+                mainViewModel.FilePath = Path.GetFullPath(mainViewModel.SaveFileService.FileName);
             }
         }
         

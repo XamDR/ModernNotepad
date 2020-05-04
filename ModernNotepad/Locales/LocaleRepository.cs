@@ -21,6 +21,7 @@ namespace ModernNotepad.Locales
                 { "ConfirmationQuestion", "Would you like to save the changes made in the file?" },
                 { "AppDescription", EnglishDescription },
                 { "AppTitle", "Untitled" },
+                { "NewDocument", "New Document.txt" },
             };
             SpanishDictionary = new Dictionary<string, string>
             {
@@ -30,7 +31,8 @@ namespace ModernNotepad.Locales
                 { "FilterAll", "Todos los archivos" },
                 { "ConfirmationQuestion", "¿Quieres guardar los cambios hechos en el archivo?" },
                 { "AppDescription", SpanishDescription },
-                { "AppTitle", "Sín título" }
+                { "AppTitle", "Sín título" },
+                { "NewDocument", "Nuevo documento.txt" },
             };
             Dictionaries = new Dictionary<string, Dictionary<string, string>>
             {

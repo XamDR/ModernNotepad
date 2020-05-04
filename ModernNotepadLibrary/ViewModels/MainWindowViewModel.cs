@@ -4,6 +4,7 @@ using ModernNotepadLibrary.Services;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.ComponentModel.DataAnnotations;
 
 namespace ModernNotepadLibrary.ViewModels
 {
@@ -37,6 +38,14 @@ namespace ModernNotepadLibrary.ViewModels
         public ISaveFileService SaveFileService { get; set; }
 
         public ISettingsManager<UserSettings> SettingsManager { get; set; }
+
+        public string filePath;
+
+        public string FilePath
+        {
+            get => filePath;
+            set => Set(ref filePath, value);
+        }
 
         public bool IsDarkThemeEnabled
         {

@@ -28,10 +28,12 @@ namespace ModernNotepad
                                                     ? ApplicationTheme.Dark : ApplicationTheme.Light;            
             LoadLocale(mainViewModel);
             mainViewModel.Title = mainViewModel.LocaleManager.LoadString("AppTitle");
+            mainViewModel.FilePath = mainViewModel.LocaleManager.LoadString("NewDocument");
 
             if (e.Args.Length > 0)
             {
                 mainViewModel.Title = Path.GetFileName(e.Args[0]);
+                mainViewModel.FilePath = Path.GetFullPath(e.Args[0]);
                 mainViewModel.TextEditor.TextArea.Text = File.ReadAllText(e.Args[0], Encoding.Default);
                 mainViewModel.TextEditor.SavedAsFile = true;
                 mainViewModel.SaveFileService.FileName = e.Args[0];

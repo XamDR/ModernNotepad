@@ -12,6 +12,7 @@ namespace ModernNotepad.Dialogs
             var dialog = new ContentDialog
             {
                 Content = question,
+                DefaultButton = ContentDialogButton.Primary,
                 PrimaryButtonText = (string)Application.Current.TryFindResource("SaveButton"),
                 SecondaryButtonText = (string)Application.Current.TryFindResource("NoSaveButton"),
                 CloseButtonText = (string)Application.Current.TryFindResource("CancelButton"),
@@ -33,6 +34,7 @@ namespace ModernNotepad.Dialogs
             var dialog = new ContentDialog
             {
                 Content = message,
+                DefaultButton = ContentDialogButton.Primary,
                 CloseButtonText = (string)Application.Current.TryFindResource("OkButton"),
                 Title = Application.Current.TryFindResource("Caption"),
                 Owner = Application.Current.MainWindow,

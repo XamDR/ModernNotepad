@@ -38,34 +38,36 @@
     <DockPanel LastChildFill="True">
         <ui:CommandBar DockPanel.Dock="Top" DefaultLabelPosition="Right" MaxHeight="40">            
             <ui:AppBarButton Label="{DynamicResource New}" Command="{Binding TextEditor.CreateNewDocumentCommand}"
-                             ToolTip="{DynamicResource NewFileToolTip}">
-                <ui:AppBarButton.Icon>
-                    <ui:SymbolIcon Symbol="Document"/>
-                </ui:AppBarButton.Icon>
+                             ToolTip="{DynamicResource NewFileToolTip}" Icon="Document" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
             <ui:AppBarButton Label="{DynamicResource Open}" Command="{Binding TextEditor.OpenFileCommand}"
-                             ToolTip="{DynamicResource OpenToolTip}">
-                <ui:AppBarButton.Icon>
-                    <ui:SymbolIcon Symbol="OpenFile"/>
-                </ui:AppBarButton.Icon>
+                             ToolTip="{DynamicResource OpenToolTip}" Icon="OpenFile" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
             <ui:AppBarButton Label="{DynamicResource Save}" Command="{Binding TextEditor.SaveFileCommand}"
-                             ToolTip="{DynamicResource SaveToolTip}">
-                <ui:AppBarButton.Icon>
-                    <ui:SymbolIcon Symbol="Save"/>
-                </ui:AppBarButton.Icon>
+                             ToolTip="{DynamicResource SaveToolTip}" Icon="Save" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
             <ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
-                             ToolTip="{DynamicResource FindToolTip}">
-                <ui:AppBarButton.Icon>
-                    <ui:SymbolIcon Symbol="Find"/>
-                </ui:AppBarButton.Icon>
+                             ToolTip="{DynamicResource FindToolTip}" Icon="Find" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
+            <ui:AppBarElementContainer>
+                <ui:DropDownButton Background="Transparent" MinHeight="40" ToolTip="{DynamicResource FormatToolTip}"
+                                   ToolTipService.Placement="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE104;" FontFamily="Segoe MDL2 Assets" Margin="5,4,4,0"/>
+                        <TextBlock Text="{DynamicResource Format}" Margin="4,0,5,0"/>
+                    </StackPanel>
+                    <ui:DropDownButton.Flyout>
+                        <ui:MenuFlyout Placement="BottomEdgeAlignedLeft">
+                            <MenuItem Header="{DynamicResource TextWrapping}" IsCheckable="True" IsChecked="{Binding IsWordWrapEnabled}" 
+                                      ToolTip="{DynamicResource TextWrappingToolTip}" ToolTipService.Placement="Right"/>
+                            <MenuItem Header="{DynamicResource SpellCheck}" IsCheckable="True" IsChecked="{Binding IsSpellCheckingEnabled}" 
+                                      ToolTip="{DynamicResource SpellCheckToolTip}" ToolTipService.Placement="Right"/>
+                        </ui:MenuFlyout>
+                    </ui:DropDownButton.Flyout>
+                </ui:DropDownButton>
+            </ui:AppBarElementContainer>
             <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
-                             ToolTip="{DynamicResource FontToolTip}">
-                <ui:AppBarButton.Icon>
-                    <ui:SymbolIcon Symbol="Font"/>
-                </ui:AppBarButton.Icon>                
+                             ToolTip="{DynamicResource FontToolTip}" Icon="Font">                
             </ui:AppBarButton>
 
             <ui:CommandBar.Content>
@@ -77,35 +79,49 @@
             </ui:CommandBar.Content>
             
             <ui:CommandBar.SecondaryCommands>
-                <ui:AppBarButton Label="{DynamicResource SaveAs}" Command="{Binding TextEditor.SaveFileAsCommand}"/>
+                <ui:AppBarButton Label="{DynamicResource SaveAs}" Command="{Binding TextEditor.SaveFileAsCommand}"
+                                 ToolTip="{DynamicResource SaveAsToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE792;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
                 <ui:AppBarSeparator/>
-                <ui:AppBarToggleButton Label="{DynamicResource TextWrapping}" IsChecked="{Binding IsWordWrapEnabled}"/>
-                <ui:AppBarToggleButton Label="{DynamicResource SpellCheck}" IsChecked="{Binding IsSpellCheckingEnabled}"/>
-                <ui:AppBarToggleButton Label="{DynamicResource StatusBar}" IsChecked="{Binding IsStatusBarVisible}"/>
+                <ui:AppBarToggleButton Label="{DynamicResource StatusBar}" IsChecked="{Binding IsStatusBarVisible}"
+                                       ToolTip="{DynamicResource StatusBarToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEF2D;"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
                 <ui:AppBarToggleButton Label="{DynamicResource DarkTheme}"  IsChecked="{Binding IsDarkThemeEnabled}" 
                                        Command="{Binding ToggleThemeCommand}"
-                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsChecked}"/>                
+                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsChecked}"
+                                       ToolTip="{DynamicResource DarkThemeToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE793;"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
                 <ui:AppBarSeparator/>
-                <ui:AppBarButton Label="{DynamicResource Close}" Command="{Binding CloseWindowCommand}"/>
+                <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
+                                 ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton Label="{DynamicResource Close}" Icon="Cancel" Command="{Binding CloseWindowCommand}"
+                                 ToolTip="{DynamicResource CloseProgramToolTip}" ToolTipService.Placement="Left"/>
             </ui:CommandBar.SecondaryCommands>
         </ui:CommandBar>
 
         <ui:CommandBar DockPanel.Dock="Bottom" MaxHeight="40" DefaultLabelPosition="Right" 
                        Visibility="{Binding IsStatusBarVisible, Converter={StaticResource BooleanToVisibility}}">
-            <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
-                             ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Top">
-                <ui:AppBarButton.Icon>
-                    <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;"/>
-                </ui:AppBarButton.Icon>
-            </ui:AppBarButton>
-            
-            <ui:CommandBar.Content>
+            <ui:AppBarElementContainer>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="lineCount" Text="{DynamicResource InitialLineCount}" Margin="10" FontSize="12"/>
-                    <ui:AppBarSeparator Margin="0"/>
-                    <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" Margin="10" FontSize="12"/>
-                    <TextBlock x:Name="currentChar" Text="{DynamicResource CharOne}" Margin="10" FontSize="12"/>
+                    <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" FontSize="12" Margin="5,12,10,0"/>
+                    <TextBlock Name="currentChar" Text="{DynamicResource CharOne}" FontSize="12" Margin="10,12,10,0"/>
                 </StackPanel>
+            </ui:AppBarElementContainer>
+            <ui:CommandBar.Content>
+                <TextBlock Text="{Binding FilePath}" Margin="10,12,0,0" FontSize="12"/>
             </ui:CommandBar.Content>
         </ui:CommandBar>
 
@@ -141,7 +157,7 @@
                 <behaviors:PasteContentBehavior/>
                 <behaviors:SelectionChangedBehavior CurrentLine="{Binding ElementName=currentLine, Path=Text, Mode=TwoWay}"
                                                     CurrentCharacter="{Binding ElementName=currentChar, Path=Text, Mode=TwoWay}"/>
-                <behaviors:TextChangedBehavior LineCount="{Binding ElementName=lineCount, Path=Text, Mode=TwoWay}"/>
+                <behaviors:TextChangedBehavior/>
             </i:Interaction.Behaviors>                        
         </cc:TextArea>
     </DockPanel>

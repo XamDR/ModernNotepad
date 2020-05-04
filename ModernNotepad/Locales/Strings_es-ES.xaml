@@ -8,8 +8,9 @@
     <sys:String x:Key="New">Nuevo</sys:String>    
     <sys:String x:Key="Open">Abrir</sys:String>
     <sys:String x:Key="Save">Guardar</sys:String>
+    <sys:String x:Key="Find">Buscar</sys:String>
     <sys:String x:Key="Font">Fuente</sys:String>
-    <sys:String x:Key="Find">Buscar</sys:String>    
+    <sys:String x:Key="Format">Formato</sys:String>    
     <sys:String x:Key="SaveAs">Guardar como</sys:String>
     <sys:String x:Key="StatusBar">Barra de estado</sys:String>
     <sys:String x:Key="DarkTheme">Tema oscuro</sys:String>
@@ -22,13 +23,20 @@
     <sys:String x:Key="NewFileToolTip">Crear archivo nuevo (Ctrl+N)</sys:String>
     <sys:String x:Key="OpenToolTip">Abrir archivo (Ctrl+A)</sys:String>
     <sys:String x:Key="SaveToolTip">Guardar archivo (Ctrl+S)</sys:String>
+    <sys:String x:Key="SaveAsToolTip">Guardar archivo como (Ctrl+S)</sys:String>
     <sys:String x:Key="FindToolTip">Buscar o reemplazar texto (Ctrl+B)</sys:String>
     <sys:String x:Key="FindNextButtonTooltip">Buscar siguiente (Ctrl+F)</sys:String>
     <sys:String x:Key="FindPreviousButtonTooltip">Buscar anterior (Ctrl+Shift+F)</sys:String>
     <sys:String x:Key="ReplaceButtonTooltip">Reemplazar (Ctrl+R)</sys:String>
     <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo (Ctrl+Shift+R)</sys:String>
     <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
+    <sys:String x:Key="FormatToolTip">Formato del texto</sys:String>
+    <sys:String x:Key="TextWrappingToolTip">Habilitar ajuste de línea</sys:String>
+    <sys:String x:Key="SpellCheckToolTip">Habilitar corrector ortográfico</sys:String>
+    <sys:String x:Key="StatusBarToolTip">Mostrar barra de estado</sys:String>
+    <sys:String x:Key="DarkThemeToolTip">Habilitar tema oscuro</sys:String>
     <sys:String x:Key="AboutToolTip">Acerca de Modern Notepad</sys:String>
+    <sys:String x:Key="CloseProgramToolTip">Cerrar programa (Alt+F4)</sys:String>
     <!--#endregion-->
     
     <!--#region StatusBar-->

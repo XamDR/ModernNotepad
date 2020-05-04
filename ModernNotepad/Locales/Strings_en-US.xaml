@@ -8,8 +8,9 @@
     <sys:String x:Key="New">New</sys:String>    
     <sys:String x:Key="Open">Open</sys:String>
     <sys:String x:Key="Save">Save</sys:String>
+    <sys:String x:Key="Find">Find</sys:String>
     <sys:String x:Key="Font">Font</sys:String>
-    <sys:String x:Key="Find">Find</sys:String>    
+    <sys:String x:Key="Format">Format</sys:String>        
     <sys:String x:Key="SaveAs">Save As</sys:String>
     <sys:String x:Key="StatusBar">Status Bar</sys:String>
     <sys:String x:Key="DarkTheme">Dark Theme</sys:String>
@@ -22,13 +23,20 @@
     <sys:String x:Key="NewFileToolTip">Create New File (Ctrl+N)</sys:String>
     <sys:String x:Key="OpenToolTip">Open File (Ctrl+A)</sys:String>
     <sys:String x:Key="SaveToolTip">Save File (Ctrl+S)</sys:String>
+    <sys:String x:Key="SaveAsToolTip">Save File As (Ctrl+Shift+S)</sys:String>
     <sys:String x:Key="FindToolTip">Find or Replace Text (Ctrl+F)</sys:String>
     <sys:String x:Key="FindNextButtonTooltip">Find Next (Ctrl+F)</sys:String>
     <sys:String x:Key="FindPreviousButtonTooltip">Find Previous (Ctrl+Shift+F)</sys:String>
     <sys:String x:Key="ReplaceButtonTooltip">Replace (Ctrl+R)</sys:String>
     <sys:String x:Key="ReplaceAllButtonTooltip">Replace All (Ctrl+Shift+R)</sys:String>
     <sys:String x:Key="FontToolTip">Font Settings</sys:String>
+    <sys:String x:Key="FormatToolTip">Text Format</sys:String>
+    <sys:String x:Key="TextWrappingToolTip">Enable Text Wrapping</sys:String>
+    <sys:String x:Key="SpellCheckToolTip">Enable Spell Check</sys:String>
+    <sys:String x:Key="StatusBarToolTip">Show Status Bar</sys:String>
+    <sys:String x:Key="DarkThemeToolTip">Enable Dark Theme</sys:String>
     <sys:String x:Key="AboutToolTip">About Modern Notepad</sys:String>
+    <sys:String x:Key="CloseProgramToolTip">Close Program (Alt+F4)</sys:String>
     <!--#endregion-->
     
     <!--#region StatusBar-->
