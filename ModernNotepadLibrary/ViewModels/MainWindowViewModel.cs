@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace ModernNotepadLibrary.ViewModels
 {
@@ -35,6 +36,8 @@ namespace ModernNotepadLibrary.ViewModels
 
         public IOpenFileService OpenFileService { get; set; }
 
+        public IPrintService PrintService { get; set; }
+
         public ISaveFileService SaveFileService { get; set; }
 
         public ISettingsManager<UserSettings> SettingsManager { get; set; }
@@ -58,6 +61,14 @@ namespace ModernNotepadLibrary.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+
+        private bool isInPreviewMode;
+
+        public bool IsInPreviewMode
+        {
+            get => isInPreviewMode;
+            set => Set(ref isInPreviewMode, value);
         }
 
         public bool IsSpellCheckingEnabled
@@ -119,17 +130,38 @@ namespace ModernNotepadLibrary.ViewModels
 
         public IApplicationThemeManager ThemeManager { get; set; }
 
+        public ICommand ClosePrintPreviewCommand => new DelegateCommand(ClosePrintPreview);
+
+        private void ClosePrintPreview()
+        {
+            IsInPreviewMode = false;
+        }
+
         public ICommand ClosingWindowCommand => new DelegateCommand<CancelEventArgs>(CloseWindow);
 
         public ICommand CloseWindowCommand => new DelegateCommand(CloseWindow);
 
         public ICommand OpenNewWindowCommand => new DelegateCommand(OpenNewWindow);
 
+        public ICommand PrintCommand => new DelegateCommand(Print);
+
+        private void Print()
+        {
+            PrintService.PrintText(TextEditor.TextArea.Text);
+        }
+
         public ICommand ShowAboutWindowCommand => new DelegateCommand(ShowAboutWindow);
 
         public ICommand ShowFindReplaceWindowCommand => new DelegateCommand(ShowFindReplaceWindow);
 
         public ICommand ShowFontSettingsWindowCommand => new DelegateCommand(ShowFontSettingsWindow);
+
+        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);
+
+        private void ShowPrintPreview()
+        {
+            IsInPreviewMode = true;
+        }
 
         public ICommand ToggleThemeCommand => new DelegateCommand<bool>(ToggleTheme);
 

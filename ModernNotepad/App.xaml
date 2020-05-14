@@ -7,7 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources/>
                 <ui:XamlControlsResources/>
-                <!--<ResourceDictionary Source="/Locales/Strings_en-US.xaml"/>-->
+                <ResourceDictionary Source="/Locales/Strings_en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -24,6 +24,7 @@ namespace ModernNotepad
             ServiceResolver.Register<ISaveFileService, SaveFileDialogService>();
             ServiceResolver.Register<ISettingsManager<UserSettings>, SettingsManager>();
             ServiceResolver.Register<IWindowService, WindowService>();
+            ServiceResolver.Register<IPrintService, PrintService>();
             app.Run();
         }
     }

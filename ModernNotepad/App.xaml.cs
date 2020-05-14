@@ -51,6 +51,7 @@ namespace ModernNotepad
                 ThemeManager = Program.ServiceResolver.Create<IApplicationThemeManager>(),
                 SettingsManager = Program.ServiceResolver.Create<ISettingsManager<UserSettings>>(),
                 LocaleManager = Program.ServiceResolver.Create<ILocaleManager>(),
+                PrintService = Program.ServiceResolver.Create<IPrintService>(),
             };
             return mainViewModel;
         }
