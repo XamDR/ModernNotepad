@@ -7,8 +7,8 @@ namespace ModernNotepadLibrary.Services
     {
         void Close(Type viewModelType);
         void CloseMainWindow();
+        IMainView CreateMainView(object viewModel, Type viewModelType);
         void Show(object viewModel, Type viewModelType);
-        bool? ShowDialog(object viewModel, Type viewModelType);
-        IMainWindow ShowMainWindow(object viewModel, Type viewModelType);
+        bool? ShowDialog(object viewModel, Type viewModelType);        
     }
 }

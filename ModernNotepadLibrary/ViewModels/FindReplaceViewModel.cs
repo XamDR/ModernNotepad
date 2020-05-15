@@ -5,12 +5,12 @@ using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
 {
-    public class FindReplaceWindowViewModel : BaseViewModel
+    public class FindReplaceViewModel : BaseViewModel
     {
-        private readonly MainWindowViewModel mainViewModel;
+        private readonly MainViewModel mainViewModel;
         private int index = 0;
 
-        public FindReplaceWindowViewModel(MainWindowViewModel mainViewModel) => this.mainViewModel = mainViewModel;
+        public FindReplaceViewModel(MainViewModel mainViewModel) => this.mainViewModel = mainViewModel;
 
         private bool matchCase;
 

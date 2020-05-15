@@ -13,6 +13,7 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <Version>1.0.5</Version>
     <ApplicationIcon>ModernNotepad.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>

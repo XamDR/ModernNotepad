@@ -8,9 +8,9 @@ namespace ModernNotepadLibrary.Core
 {
     public class TextEditor
     {
-        private readonly MainWindowViewModel mainViewModel;
+        private readonly MainViewModel mainViewModel;
 
-        public TextEditor(MainWindowViewModel mainViewModel) => this.mainViewModel = mainViewModel;
+        public TextEditor(MainViewModel mainViewModel) => this.mainViewModel = mainViewModel;
 
         public bool SavedAsFile { get; set; } = false;
 

@@ -16,7 +16,7 @@ namespace ModernNotepad
         {
             base.OnStartup(e);
             var mainViewModel = CreateMainViewModel();
-            var mainWindow = mainViewModel.WindowService.ShowMainWindow(mainViewModel, typeof(MainWindowViewModel));
+            var mainWindow = mainViewModel.WindowService.CreateMainView(mainViewModel, typeof(MainViewModel));
             mainViewModel.TextEditor.TextArea = mainWindow.TextArea;
 
             if (!Directory.Exists(mainViewModel.SettingsManager.SettingsDirectoryPath))
@@ -40,9 +40,9 @@ namespace ModernNotepad
             }
         }
 
-        private MainWindowViewModel CreateMainViewModel()
+        private MainViewModel CreateMainViewModel()
         {
-            var mainViewModel = new MainWindowViewModel
+            var mainViewModel = new MainViewModel
             {
                 DialogService = Program.ServiceResolver.Create<IContentDialogService>(),
                 WindowService = Program.ServiceResolver.Create<IWindowService>(),
@@ -56,7 +56,7 @@ namespace ModernNotepad
             return mainViewModel;
         }
 
-        private void ApplySettings(MainWindowViewModel mainViewModel)
+        private void ApplySettings(MainViewModel mainViewModel)
         {
             mainViewModel.IsDarkThemeEnabled = mainViewModel.SettingsManager.LoadSettings().IsDarkThemeEnabled;
             mainViewModel.IsSpellCheckingEnabled = mainViewModel.SettingsManager.LoadSettings().IsSpellCheckingEnabled;
@@ -64,7 +64,7 @@ namespace ModernNotepad
             mainViewModel.IsWordWrapEnabled = mainViewModel.SettingsManager.LoadSettings().IsWordWrapEnabled;
         }
 
-        private void LoadLocale(MainWindowViewModel mainViewModel)
+        private void LoadLocale(MainViewModel mainViewModel)
         {
             try
             {                

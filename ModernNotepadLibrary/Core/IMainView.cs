@@ -1,6 +1,6 @@
 ﻿namespace ModernNotepadLibrary.Core
 {
-    public interface IMainWindow
+    public interface IMainView
     {
         ITextArea TextArea { get; }
     }

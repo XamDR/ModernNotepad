@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
 using System.Windows.Media;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Converters
 {
-    class StringToFontFamilyConverter : IValueConverter
+    class StringToFontFamilyConverter : BaseConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {
@@ -17,7 +16,7 @@ namespace ModernNotepad.Util
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {

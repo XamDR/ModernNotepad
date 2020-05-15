@@ -3,11 +3,11 @@ using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
 {
-    public class FontSettingsWindowViewModel : BaseViewModel
+    public class FontSettingsViewModel : BaseViewModel
     {
-        private readonly MainWindowViewModel mainViewModel;
+        private readonly MainViewModel mainViewModel;
 
-        public FontSettingsWindowViewModel(MainWindowViewModel mainViewModel) => this.mainViewModel = mainViewModel;
+        public FontSettingsViewModel(MainViewModel mainViewModel) => this.mainViewModel = mainViewModel;
 
         private string selectedFontName = "Consolas";
 

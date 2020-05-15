@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Services
 {
     class WindowService : IWindowService
     {
@@ -37,7 +37,7 @@ namespace ModernNotepad.Util
             return window.ShowDialog();
         }
 
-        public IMainWindow ShowMainWindow(object viewModel, Type viewModelType)
+        public IMainView CreateMainView(object viewModel, Type viewModelType)
         {
             var window = CreateWindow(viewModelType) as MainWindow;
             window.DataContext = viewModel;
@@ -47,12 +47,12 @@ namespace ModernNotepad.Util
 
         private Type GetViewType(Type viewModelType)
         {
-            var viewModelFullName = viewModelType.FullName; //ModernNotepadLibrary.ViewModels.AboutWindowViewModel
+            var viewModelFullName = viewModelType.FullName; //ModernNotepadLibrary.ViewModels.AboutViewModel
 
             var names = viewModelFullName.Split('.');
             var firstName = names[0].Replace("Library", "");
             var secondName = names[1].Replace("Model", "");
-            var thirdName = names[2].Replace("ViewModel", "");
+            var thirdName = names[2].Replace("ViewModel", "Window");
 
             var viewFullName = string.Join('.', new[] { firstName, secondName, thirdName }); //ModernNotepad.Views.AboutWindow
             var viewType = Assembly.GetExecutingAssembly().GetType(viewFullName);

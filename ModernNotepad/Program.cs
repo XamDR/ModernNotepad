@@ -1,5 +1,5 @@
 ﻿using ModernNotepad.Dialogs;
-using ModernNotepad.Util;
+using ModernNotepad.Services;
 using ModernNotepadLibrary.Core;
 using ModernNotepadLibrary.Helpers;
 using ModernNotepadLibrary.Services;

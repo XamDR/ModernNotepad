@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Services
 {
     class LocaleManager : ILocaleManager
     {

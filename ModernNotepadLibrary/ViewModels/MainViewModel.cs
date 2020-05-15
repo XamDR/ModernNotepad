@@ -2,29 +2,27 @@
 using ModernNotepadLibrary.Helpers;
 using ModernNotepadLibrary.Services;
 using System.ComponentModel;
-using System.Windows.Input;
 using System.Diagnostics;
-using System.ComponentModel.DataAnnotations;
-using System;
+using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {        
-        private readonly AboutWindowViewModel aboutWindow;
-        private readonly FontSettingsWindowViewModel fontSettings;
+        private readonly AboutViewModel aboutWindow;
+        private readonly FontSettingsViewModel fontSettings;
         private bool closing = false; //we need to use this variable because ContentDialog.ShowAsync() is an async method.
 
-        public MainWindowViewModel()
+        public MainViewModel()
         {
             TextEditor = new TextEditor(this);
             UserSettings = new UserSettings();
-            aboutWindow = new AboutWindowViewModel(this);
-            FindReplace = new FindReplaceWindowViewModel(this);
-            fontSettings = new FontSettingsWindowViewModel(this);
+            aboutWindow = new AboutViewModel(this);
+            FindReplace = new FindReplaceViewModel(this);
+            fontSettings = new FontSettingsViewModel(this);
         }
 
-        public FindReplaceWindowViewModel FindReplace { get; }
+        public FindReplaceViewModel FindReplace { get; }
 
         public TextEditor TextEditor { get; }
 
@@ -130,12 +128,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public IApplicationThemeManager ThemeManager { get; set; }
 
-        public ICommand ClosePrintPreviewCommand => new DelegateCommand(ClosePrintPreview);
-
-        private void ClosePrintPreview()
-        {
-            IsInPreviewMode = false;
-        }
+        public ICommand ClosePrintPreviewCommand => new DelegateCommand(ClosePrintPreview);        
 
         public ICommand ClosingWindowCommand => new DelegateCommand<CancelEventArgs>(CloseWindow);
 
@@ -143,12 +136,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand OpenNewWindowCommand => new DelegateCommand(OpenNewWindow);
 
-        public ICommand PrintCommand => new DelegateCommand(Print);
-
-        private void Print()
-        {
-            PrintService.PrintText(TextEditor.TextArea.Text);
-        }
+        public ICommand PrintCommand => new DelegateCommand(Print);        
 
         public ICommand ShowAboutWindowCommand => new DelegateCommand(ShowAboutWindow);
 
@@ -156,14 +144,11 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand ShowFontSettingsWindowCommand => new DelegateCommand(ShowFontSettingsWindow);
 
-        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);
-
-        private void ShowPrintPreview()
-        {
-            IsInPreviewMode = true;
-        }
+        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);        
 
         public ICommand ToggleThemeCommand => new DelegateCommand<bool>(ToggleTheme);
+
+        private void ClosePrintPreview() => IsInPreviewMode = false;
 
         private void CloseWindow() => WindowService.CloseMainWindow();
 
@@ -203,12 +188,16 @@ namespace ModernNotepadLibrary.ViewModels
             Process.Start(psi);
         }
 
-        private void ShowAboutWindow() => WindowService.ShowDialog(aboutWindow, typeof(AboutWindowViewModel));
+        private void Print() => PrintService.PrintText(TextEditor.TextArea.Text);
 
-        private void ShowFindReplaceWindow() => WindowService.Show(FindReplace, typeof(FindReplaceWindowViewModel));
+        private void ShowAboutWindow() => WindowService.ShowDialog(aboutWindow, typeof(AboutViewModel));
+
+        private void ShowFindReplaceWindow() => WindowService.Show(FindReplace, typeof(FindReplaceViewModel));
 
         private void ShowFontSettingsWindow() 
-            => WindowService.ShowDialog(fontSettings, typeof(FontSettingsWindowViewModel));
+            => WindowService.ShowDialog(fontSettings, typeof(FontSettingsViewModel));
+
+        private void ShowPrintPreview() => IsInPreviewMode = true;
 
         private void ToggleTheme(bool isDarkThemeRequested) => ThemeManager.ChangeTheme(isDarkThemeRequested);
     }

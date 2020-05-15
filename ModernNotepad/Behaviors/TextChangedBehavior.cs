@@ -22,7 +22,7 @@ namespace ModernNotepad.Behaviors
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {   
-            var viewModel = Application.Current.MainWindow.DataContext as MainWindowViewModel;            
+            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;            
             var textArea = viewModel.TextEditor.TextArea;
 
             if (e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length || 

@@ -1,7 +1,7 @@
 ﻿using ModernNotepadLibrary.Services;
 using ModernWpf;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Services
 {
     class ApplicationThemeManager : IApplicationThemeManager
     {

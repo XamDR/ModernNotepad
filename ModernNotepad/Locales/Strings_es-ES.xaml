@@ -4,20 +4,34 @@
 
     <sys:String x:Key="AppTitle">Sin título - Modern Notepad</sys:String>
     
-    <!--#region CommandBar-->
+    <!--#region Main CommandBar-->
     <sys:String x:Key="New">Nuevo</sys:String>    
     <sys:String x:Key="Open">Abrir</sys:String>
     <sys:String x:Key="Save">Guardar</sys:String>
     <sys:String x:Key="Find">Buscar</sys:String>
     <sys:String x:Key="Font">Fuente</sys:String>
-    <sys:String x:Key="Format">Formato</sys:String>    
+    <sys:String x:Key="Format">Formato</sys:String>
+    <sys:String x:Key="PrintPreview">Vista previa</sys:String>
     <sys:String x:Key="SaveAs">Guardar como</sys:String>
     <sys:String x:Key="StatusBar">Barra de estado</sys:String>
     <sys:String x:Key="DarkTheme">Tema oscuro</sys:String>
     <sys:String x:Key="AboutModernNotepad">Acerca de</sys:String>
     <sys:String x:Key="Close">Salir</sys:String>
     <!--#endregion-->
-    
+
+    <!--#region Print CommandBar-->
+    <sys:String x:Key="Print">Imprimir</sys:String>
+    <sys:String x:Key="PreviousPage">Anterior</sys:String>
+    <sys:String x:Key="NextPage">Siguiente</sys:String>
+    <sys:String x:Key="Of">de</sys:String>
+    <sys:String x:Key="CancelPrinting">Cancelar</sys:String>
+    <sys:String x:Key="PrintTooltip">Mostrar diálogo de impresión</sys:String>
+    <sys:String x:Key="PreviousPageToolTip">Página anterior</sys:String>
+    <sys:String x:Key="NextPageToolTip">Página siguiente</sys:String>
+    <sys:String x:Key="CancelPrintingTooltip">Cancelar impresión</sys:String>
+    <sys:String x:Key="DescriptionPrintingJob">Documento</sys:String>
+    <!--#endregion-->
+
     <!--#region ToolTips-->
     <sys:String x:Key="NewWindowToolTip">Abrir una ventana nueva (Ctrl+Shift+N)</sys:String>
     <sys:String x:Key="NewFileToolTip">Crear archivo nuevo (Ctrl+N)</sys:String>
@@ -31,6 +45,7 @@
     <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo</sys:String>
     <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
     <sys:String x:Key="FormatToolTip">Formato del texto</sys:String>
+    <sys:String x:Key="PrintPreviewToolTip">Mostrar vista previa de impresión</sys:String>
     <sys:String x:Key="TextWrappingToolTip">Habilitar ajuste de línea</sys:String>
     <sys:String x:Key="SpellCheckToolTip">Habilitar corrector ortográfico</sys:String>
     <sys:String x:Key="StatusBarToolTip">Mostrar barra de estado</sys:String>

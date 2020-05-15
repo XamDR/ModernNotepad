@@ -4,18 +4,32 @@
 
     <sys:String x:Key="AppTitle">Untitled - Modern Notepad</sys:String>
     
-    <!--#region CommandBar-->
+    <!--#region Main CommandBar-->
     <sys:String x:Key="New">New</sys:String>    
     <sys:String x:Key="Open">Open</sys:String>
     <sys:String x:Key="Save">Save</sys:String>
     <sys:String x:Key="Find">Find</sys:String>
     <sys:String x:Key="Font">Font</sys:String>
-    <sys:String x:Key="Format">Format</sys:String>        
+    <sys:String x:Key="Format">Format</sys:String>
+    <sys:String x:Key="PrintPreview">Print Preview</sys:String>
     <sys:String x:Key="SaveAs">Save As</sys:String>
     <sys:String x:Key="StatusBar">Status Bar</sys:String>
     <sys:String x:Key="DarkTheme">Dark Theme</sys:String>
     <sys:String x:Key="AboutModernNotepad">About</sys:String>
     <sys:String x:Key="Close">Exit</sys:String>
+    <!--#endregion-->
+    
+    <!--#region Print CommandBar-->
+    <sys:String x:Key="Print">Print</sys:String>
+    <sys:String x:Key="PreviousPage">Previous</sys:String>
+    <sys:String x:Key="NextPage">Next</sys:String>
+    <sys:String x:Key="Of">of</sys:String>
+    <sys:String x:Key="CancelPrinting">Cancel</sys:String>
+    <sys:String x:Key="PrintTooltip">Show Print Dialog</sys:String>
+    <sys:String x:Key="PreviousPageToolTip">Previous Page</sys:String>
+    <sys:String x:Key="NextPageToolTip">Next Page</sys:String>
+    <sys:String x:Key="CancelPrintingTooltip">Cancel Printing</sys:String>
+    <sys:String x:Key="DescriptionPrintingJob">Document</sys:String>
     <!--#endregion-->
     
     <!--#region ToolTips-->
@@ -31,6 +45,7 @@
     <sys:String x:Key="ReplaceAllButtonTooltip">Replace All</sys:String>
     <sys:String x:Key="FontToolTip">Font Settings</sys:String>
     <sys:String x:Key="FormatToolTip">Text Format</sys:String>
+    <sys:String x:Key="PrintPreviewToolTip">Show Print Preview</sys:String>
     <sys:String x:Key="TextWrappingToolTip">Enable Text Wrapping</sys:String>
     <sys:String x:Key="SpellCheckToolTip">Enable Spell Check</sys:String>
     <sys:String x:Key="StatusBarToolTip">Show Status Bar</sys:String>

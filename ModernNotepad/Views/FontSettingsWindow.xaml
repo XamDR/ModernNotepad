@@ -5,6 +5,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:util="clr-namespace:ModernNotepad.Util"
+        xmlns:conv="clr-namespace:ModernNotepad.Converters"
         mc:Ignorable="d"
         Title="{DynamicResource FontSettingsTitle}" 
         Height="280" Width="400"
@@ -14,8 +15,8 @@
         ui:WindowHelper.UseModernWindowStyle="True">
 
     <Window.Resources>
+        <conv:StringToFontFamilyConverter x:Key="StringToFontFamily"/>
         <util:FontWrapper x:Key="FontWrapper"/>
-        <util:StringToFontFamilyConverter x:Key="StringToFontFamily"/>
     </Window.Resources>
     
     <Grid Margin="5,0">

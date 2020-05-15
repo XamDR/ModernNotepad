@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Services
 {
     class SettingsManager : ISettingsManager<UserSettings>
     {

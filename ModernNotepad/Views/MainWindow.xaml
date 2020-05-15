@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behaviors="clr-namespace:ModernNotepad.Behaviors"
         xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
-        xmlns:util="clr-namespace:ModernNotepad.Util"
+        xmlns:conv="clr-namespace:ModernNotepad.Converters"
         mc:Ignorable="d"
         Title="{Binding Title, StringFormat='\{0\} - Modern Notepad'}" 
         Height="600" Width="900"
@@ -17,6 +17,7 @@
 
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource DefaultWindowStyle}">
+            <Setter Property="WindowState" Value="Normal"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
                     <Setter Property="WindowState" Value="Maximized"/>
@@ -37,14 +38,15 @@
         <KeyBinding Command="{Binding TextEditor.OpenFileCommand}" Gesture="Ctrl+A"/>
         <KeyBinding Command="{Binding TextEditor.SaveFileCommand}" Gesture="Ctrl+S"/>
         <KeyBinding Command="{Binding ShowFindReplaceWindowCommand}" Gesture="Ctrl+F"/>
-        <KeyBinding Command="{Binding TextEditor.SaveFileAsCommand}" Gesture="Ctrl+Shift+S"/>        
+        <KeyBinding Command="{Binding TextEditor.SaveFileAsCommand}" Gesture="Ctrl+Shift+S"/>
+        <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+Shift+P"/>
     </Window.InputBindings>
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-        <util:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
-        <util:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility"/>
-        <util:StringToFlowDocumentConverter x:Key="StringToFlowDocument"/>
+        <conv:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
+        <conv:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility"/>
+        <conv:StringToFlowDocumentConverter x:Key="StringToFlowDocument"/>
     </Window.Resources>
 
     <Grid>
@@ -88,7 +90,8 @@
             <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
                              ToolTip="{DynamicResource FontToolTip}" Icon="Font">                
             </ui:AppBarButton>
-            <ui:AppBarButton Label="PrintPreview" ToolTip="Show Print Preview" Command="{Binding ShowPrintPreviewCommand}">
+            <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}" 
+                             Command="{Binding ShowPrintPreviewCommand}">
                 <ui:AppBarButton.Icon>
                     <ui:FontIcon Glyph="&#xE956;"/>
                 </ui:AppBarButton.Icon>
@@ -137,24 +140,32 @@
         </ui:CommandBar>
 
         <ui:CommandBar Visibility="{Binding IsInPreviewMode, Converter={StaticResource BooleanToVisibility}}">
-            <ui:AppBarButton Icon="Print" ToolTip="Open Print Dialog" Command="{Binding PrintCommand}"/>
-            <ui:AppBarButton Label="" ToolTip="Previous Page" Command="{x:Static NavigationCommands.PreviousPage}"
-                             CommandTarget="{Binding Source={x:Reference pageViewer}}">
+            <ui:AppBarButton Label="{DynamicResource Print}" Icon="Print" ToolTip="{DynamicResource PrintTooltip}" 
+                             Command="{Binding PrintCommand}"/>
+            <ui:AppBarButton Label="{DynamicResource PreviousPage}" ToolTip="{DynamicResource PreviousPageToolTip}" 
+                             Command="NavigationCommands.PreviousPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
                 <ui:AppBarButton.Icon>
                     <ui:FontIcon Glyph="&#xE00E;"/>
                 </ui:AppBarButton.Icon>
             </ui:AppBarButton>
-            <ui:AppBarButton Label="" ToolTip="Next Page" Command="{x:Static NavigationCommands.NextPage}"
-                             CommandTarget="{Binding Source={x:Reference pageViewer}}">
+            <ui:AppBarButton Label="{DynamicResource NextPage}" ToolTip="{DynamicResource NextPageToolTip}" 
+                             Command="NavigationCommands.NextPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
                 <ui:AppBarButton.Icon>
                     <ui:FontIcon Glyph="&#xE00F;"/>
                 </ui:AppBarButton.Icon>
             </ui:AppBarButton>
-            <ui:AppBarButton Icon="Cancel" ToolTip="Close Print Preview" Command="{Binding ClosePrintPreviewCommand}"/>
+            <ui:AppBarButton Label="{DynamicResource CancelPrinting}" Icon="Cancel" ToolTip="{DynamicResource CancelPrintingTooltip}" 
+                             Command="{Binding ClosePrintPreviewCommand}"/>
+            <ui:CommandBar.Content>
+                <TextBlock Margin="20,10">
+                    <Run Text="{Binding ElementName=pageViewer, Path=MasterPageNumber, Mode=OneWay}"/>
+                    <Run Text="{DynamicResource Of}"/>
+                    <Run Text="{Binding ElementName=pageViewer, Path=PageCount, Mode=OneWay}"/>
+                </TextBlock>
+            </ui:CommandBar.Content>
         </ui:CommandBar>
 
-        <ui:CommandBar Grid.Row="2" MaxHeight="40" DefaultLabelPosition="Right" 
-                       Visibility="{Binding IsStatusBarVisible, Converter={StaticResource BooleanToVisibility}}">
+        <ui:CommandBar Grid.Row="2" MaxHeight="40" DefaultLabelPosition="Right">
             <ui:AppBarElementContainer>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" FontSize="12" Margin="5,12,10,0"/>
@@ -166,10 +177,15 @@
             </ui:CommandBar.Content>
             <ui:CommandBar.Style>
                 <Style TargetType="ui:CommandBar">
+                    <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInPreviewMode}" Value="False"/>
+                                <Condition Binding="{Binding IsStatusBarVisible}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </MultiDataTrigger>
                     </Style.Triggers>
                 </Style>
             </ui:CommandBar.Style>
@@ -200,7 +216,7 @@
         </Popup>
 
         <cc:TextArea x:Name="textArea" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                     IsInactiveSelectionHighlightEnabled="True"
+                     IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6"
                      Visibility="{Binding IsInPreviewMode, Converter={StaticResource InverseBooleanToVisibility}}"
                      SpellCheck.IsEnabled="{Binding IsSpellCheckingEnabled}" Style="{StaticResource DefaultTextBoxStyle}"
                      TextWrapping="{Binding IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
@@ -213,7 +229,7 @@
         </cc:TextArea>
 
         <FlowDocumentPageViewer Name="pageViewer" Grid.Row="1" Foreground="Black"
-                                
+                                Document="{Binding ElementName=textArea, Path=Text, Converter={StaticResource StringToFlowDocument}}"
                                 Visibility="{Binding IsInPreviewMode, Converter={StaticResource BooleanToVisibility}}">
             <FlowDocumentPageViewer.Template>
                 <ControlTemplate TargetType="FlowDocumentPageViewer">

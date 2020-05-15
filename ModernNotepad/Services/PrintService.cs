@@ -1,8 +1,9 @@
 ﻿using ModernNotepadLibrary.Services;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace ModernNotepad.Util
+namespace ModernNotepad.Services
 {
     class PrintService : IPrintService
     {
@@ -14,7 +15,8 @@ namespace ModernNotepad.Util
             {
                 var document = CreateDocument(content);
                 var documentPaginator = ((IDocumentPaginatorSource)document).DocumentPaginator;
-                printDialog.PrintDocument(documentPaginator, "Demo");
+                var description = (string)Application.Current.TryFindResource("DescriptionPrintingJob");
+                printDialog.PrintDocument(documentPaginator, description);
             }
         }
 

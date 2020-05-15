@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace ModernNotepadLibrary.ViewModels
 {
-    public class AboutWindowViewModel : BaseViewModel
+    public class AboutViewModel : BaseViewModel
     {
-        private readonly MainWindowViewModel mainViewModel;
+        private readonly MainViewModel mainViewModel;
 
-        public AboutWindowViewModel(MainWindowViewModel mainViewModel) => this.mainViewModel = mainViewModel;
+        public AboutViewModel(MainViewModel mainViewModel) => this.mainViewModel = mainViewModel;
 
         public string AssemblyCompany
         {
