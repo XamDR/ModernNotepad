@@ -29,7 +29,7 @@
     <sys:String x:Key="PreviousPageToolTip">Previous Page</sys:String>
     <sys:String x:Key="NextPageToolTip">Next Page</sys:String>
     <sys:String x:Key="CancelPrintingTooltip">Cancel Printing</sys:String>
-    <sys:String x:Key="DescriptionPrintingJob">Document</sys:String>
+    <sys:String x:Key="DescriptionPrintJob">Document</sys:String>
     <!--#endregion-->
     
     <!--#region ToolTips-->

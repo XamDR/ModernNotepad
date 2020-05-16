@@ -188,7 +188,7 @@ namespace ModernNotepadLibrary.ViewModels
             Process.Start(psi);
         }
 
-        private void Print() => PrintService.PrintText(TextEditor.TextArea.Text);
+        private void Print() => PrintService.PrintDocument();
 
         private void ShowAboutWindow() => WindowService.ShowDialog(aboutWindow, typeof(AboutViewModel));
 

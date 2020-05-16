@@ -8,6 +8,7 @@
         xmlns:behaviors="clr-namespace:ModernNotepad.Behaviors"
         xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
         xmlns:conv="clr-namespace:ModernNotepad.Converters"
+        xmlns:util="clr-namespace:ModernNotepad.Util"
         mc:Ignorable="d"
         Title="{Binding Title, StringFormat='\{0\} - Modern Notepad'}" 
         Height="600" Width="900"
@@ -42,10 +43,8 @@
         <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+Shift+P"/>
     </Window.InputBindings>
 
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <Window.Resources>        
         <conv:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
-        <conv:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibility"/>
         <conv:StringToFlowDocumentConverter x:Key="StringToFlowDocument"/>
     </Window.Resources>
 
@@ -56,8 +55,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40"
-                       Visibility="{Binding IsInPreviewMode, Converter={StaticResource InverseBooleanToVisibility}}">            
+        <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40">            
             <ui:AppBarButton Label="{DynamicResource New}" Command="{Binding TextEditor.CreateNewDocumentCommand}"
                              ToolTip="{DynamicResource NewFileToolTip}" Icon="Document" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
@@ -137,9 +135,20 @@
                 <ui:AppBarButton Label="{DynamicResource Close}" Icon="Clear" Command="{Binding CloseWindowCommand}"
                                  ToolTip="{DynamicResource CloseProgramToolTip}" ToolTipService.Placement="Left"/>
             </ui:CommandBar.SecondaryCommands>
+
+            <ui:CommandBar.Style>
+                <Style TargetType="ui:CommandBar">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ui:CommandBar.Style>
         </ui:CommandBar>
 
-        <ui:CommandBar Visibility="{Binding IsInPreviewMode, Converter={StaticResource BooleanToVisibility}}">
+        <ui:CommandBar>
             <ui:AppBarButton Label="{DynamicResource Print}" Icon="Print" ToolTip="{DynamicResource PrintTooltip}" 
                              Command="{Binding PrintCommand}"/>
             <ui:AppBarButton Label="{DynamicResource PreviousPage}" ToolTip="{DynamicResource PreviousPageToolTip}" 
@@ -158,11 +167,22 @@
                              Command="{Binding ClosePrintPreviewCommand}"/>
             <ui:CommandBar.Content>
                 <TextBlock Margin="20,10">
-                    <Run Text="{Binding ElementName=pageViewer, Path=MasterPageNumber, Mode=OneWay}"/>
+                    <Run Text="{Binding Source={x:Reference pageViewer}, Path=MasterPageNumber, Mode=OneWay}"/>
                     <Run Text="{DynamicResource Of}"/>
-                    <Run Text="{Binding ElementName=pageViewer, Path=PageCount, Mode=OneWay}"/>
+                    <Run Text="{Binding Source={x:Reference pageViewer}, Path=PageCount, Mode=OneWay}"/>
                 </TextBlock>
             </ui:CommandBar.Content>
+            
+            <ui:CommandBar.Style>
+                <Style TargetType="ui:CommandBar">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ui:CommandBar.Style>
         </ui:CommandBar>
 
         <ui:CommandBar Grid.Row="2" MaxHeight="40" DefaultLabelPosition="Right">
@@ -213,24 +233,39 @@
             <i:Interaction.Behaviors>
                 <behaviors:PopupOpenedBehavior/>
             </i:Interaction.Behaviors>
-        </Popup>
+        </Popup>        
 
         <cc:TextArea x:Name="textArea" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                     IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6"
-                     Visibility="{Binding IsInPreviewMode, Converter={StaticResource InverseBooleanToVisibility}}"
-                     SpellCheck.IsEnabled="{Binding IsSpellCheckingEnabled}" Style="{StaticResource DefaultTextBoxStyle}"
+                     IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6"                     
+                     SpellCheck.IsEnabled="{Binding IsSpellCheckingEnabled}"
                      TextWrapping="{Binding IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
             <i:Interaction.Behaviors>
                 <behaviors:PasteContentBehavior/>
                 <behaviors:SelectionChangedBehavior CurrentLine="{Binding ElementName=currentLine, Path=Text, Mode=TwoWay}"
                                                     CurrentCharacter="{Binding ElementName=currentChar, Path=Text, Mode=TwoWay}"/>
                 <behaviors:TextChangedBehavior/>
-            </i:Interaction.Behaviors>                        
+            </i:Interaction.Behaviors>
+            <cc:TextArea.Style>
+                <Style TargetType="cc:TextArea" BasedOn="{StaticResource DefaultTextBoxStyle}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </cc:TextArea.Style>
         </cc:TextArea>
 
-        <FlowDocumentPageViewer Name="pageViewer" Grid.Row="1" Foreground="Black"
-                                Document="{Binding ElementName=textArea, Path=Text, Converter={StaticResource StringToFlowDocument}}"
-                                Visibility="{Binding IsInPreviewMode, Converter={StaticResource BooleanToVisibility}}">
+        <FlowDocumentPageViewer Name="pageViewer" Grid.Row="1" Foreground="Black">
+            <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
+                          PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
+                          PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">
+                <Paragraph>
+                    <Run Text="{Binding ElementName=textArea, Path=Text}"/>
+                </Paragraph>
+            </FlowDocument>
+            
             <FlowDocumentPageViewer.Template>
                 <ControlTemplate TargetType="FlowDocumentPageViewer">
                     <Viewbox Margin="0,10">
@@ -241,6 +276,17 @@
                     </Viewbox>
                 </ControlTemplate>
             </FlowDocumentPageViewer.Template>
+
+            <FlowDocumentPageViewer.Style>
+                <Style TargetType="FlowDocumentPageViewer">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsInPreviewMode}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </FlowDocumentPageViewer.Style>
         </FlowDocumentPageViewer>
     </Grid>
 </Window>
