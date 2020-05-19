@@ -8,25 +8,27 @@ using System.Windows.Input;
 namespace ModernNotepadLibrary.ViewModels
 {
     public class MainViewModel : BaseViewModel
-    {        
-        private readonly AboutViewModel aboutWindow;
-        private readonly FontSettingsViewModel fontSettings;
+    {
         private bool closing = false; //we need to use this variable because ContentDialog.ShowAsync() is an async method.
 
         public MainViewModel()
         {
-            TextEditor = new TextEditor(this);
-            UserSettings = new UserSettings();
-            aboutWindow = new AboutViewModel(this);
-            FindReplace = new FindReplaceViewModel(this);
-            fontSettings = new FontSettingsViewModel(this);
+            TextEditor = new TextEditor(this);            
+            AboutViewModel = new AboutViewModel(this);
+            FindReplaceViewModel = new FindReplaceViewModel(this);
+            FontSettingsViewModel = new FontSettingsViewModel(this);
+            SettingsViewModel = new SettingsViewModel(this);
         }
 
-        public FindReplaceViewModel FindReplace { get; }
+        public AboutViewModel AboutViewModel { get; }
+
+        public FindReplaceViewModel FindReplaceViewModel { get; }
+
+        public FontSettingsViewModel FontSettingsViewModel { get; }
+        
+        public SettingsViewModel SettingsViewModel { get; }
 
         public TextEditor TextEditor { get; }
-
-        public UserSettings UserSettings { get; }
 
         public IContentDialogService DialogService { get; set; }
 
@@ -48,64 +50,12 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref filePath, value);
         }
 
-        public bool IsDarkThemeEnabled
-        {
-            get => UserSettings.IsDarkThemeEnabled;
-            set
-            {
-                if (UserSettings.IsDarkThemeEnabled != value)
-                {
-                    UserSettings.IsDarkThemeEnabled = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private bool isInPreviewMode;
 
         public bool IsInPreviewMode
         {
             get => isInPreviewMode;
             set => Set(ref isInPreviewMode, value);
-        }
-
-        public bool IsSpellCheckingEnabled
-        {
-            get => UserSettings.IsSpellCheckingEnabled;
-            set
-            {
-                if (UserSettings.IsSpellCheckingEnabled != value)
-                {
-                    UserSettings.IsSpellCheckingEnabled = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public bool IsStatusBarVisible
-        {
-            get => UserSettings.IsStatusBarVisible;
-            set
-            {
-                if (UserSettings.IsStatusBarVisible != value)
-                {
-                    UserSettings.IsStatusBarVisible = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public bool IsWordWrapEnabled
-        {
-            get => UserSettings.IsWordWrapEnabled;
-            set
-            {
-                if (UserSettings.IsWordWrapEnabled != value)
-                {
-                    UserSettings.IsWordWrapEnabled = value;
-                    OnPropertyChanged();
-                }
-            }
         }
 
         private bool shouldPopupBeOpen;
@@ -144,9 +94,11 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand ShowFontSettingsWindowCommand => new DelegateCommand(ShowFontSettingsWindow);
 
-        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);        
+        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);
 
-        public ICommand ToggleThemeCommand => new DelegateCommand<bool>(ToggleTheme);
+        public ICommand ShowSettingsWindowCommand => new DelegateCommand(ShowSettingsWindow);
+
+        private void ShowSettingsWindow() => WindowService.ShowDialog(SettingsViewModel, typeof(SettingsViewModel));
 
         private void ClosePrintPreview() => IsInPreviewMode = false;
 
@@ -176,7 +128,7 @@ namespace ModernNotepadLibrary.ViewModels
                     }
                 }
             }
-            SettingsManager.SaveSettings(UserSettings);
+            SettingsManager.SaveSettings(SettingsViewModel.UserSettings);
         }
 
         private void OpenNewWindow()
@@ -190,15 +142,13 @@ namespace ModernNotepadLibrary.ViewModels
 
         private void Print() => PrintService.PrintDocument();
 
-        private void ShowAboutWindow() => WindowService.ShowDialog(aboutWindow, typeof(AboutViewModel));
+        private void ShowAboutWindow() => WindowService.ShowDialog(AboutViewModel, typeof(AboutViewModel));
 
-        private void ShowFindReplaceWindow() => WindowService.Show(FindReplace, typeof(FindReplaceViewModel));
+        private void ShowFindReplaceWindow() => WindowService.Show(FindReplaceViewModel, typeof(FindReplaceViewModel));
 
         private void ShowFontSettingsWindow() 
-            => WindowService.ShowDialog(fontSettings, typeof(FontSettingsViewModel));
+            => WindowService.ShowDialog(FontSettingsViewModel, typeof(FontSettingsViewModel));
 
         private void ShowPrintPreview() => IsInPreviewMode = true;
-
-        private void ToggleTheme(bool isDarkThemeRequested) => ThemeManager.ChangeTheme(isDarkThemeRequested);
     }
 }
