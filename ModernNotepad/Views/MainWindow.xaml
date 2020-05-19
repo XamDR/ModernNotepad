@@ -45,7 +45,6 @@
 
     <Window.Resources>        
         <conv:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
-        <conv:StringToFlowDocumentConverter x:Key="StringToFlowDocument"/>
     </Window.Resources>
 
     <Grid>
@@ -68,33 +67,10 @@
             <ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
                              ToolTip="{DynamicResource FindToolTip}" Icon="Find" ToolTipService.Placement="Bottom">                
             </ui:AppBarButton>
-            <ui:AppBarElementContainer>
-                <ui:DropDownButton Background="Transparent" MinHeight="40" ToolTip="{DynamicResource FormatToolTip}"
-                                   ToolTipService.Placement="Bottom">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE104;" FontFamily="Segoe MDL2 Assets" Margin="5,4,4,0"/>
-                        <TextBlock Text="{DynamicResource Format}" Margin="4,0,5,0"/>
-                    </StackPanel>
-                    <ui:DropDownButton.Flyout>
-                        <ui:MenuFlyout Placement="BottomEdgeAlignedLeft">
-                            <MenuItem Header="{DynamicResource TextWrapping}" IsCheckable="True" IsChecked="{Binding IsWordWrapEnabled}" 
-                                      ToolTip="{DynamicResource TextWrappingToolTip}" ToolTipService.Placement="Right"/>
-                            <MenuItem Header="{DynamicResource SpellCheck}" IsCheckable="True" IsChecked="{Binding IsSpellCheckingEnabled}" 
-                                      ToolTip="{DynamicResource SpellCheckToolTip}" ToolTipService.Placement="Right"/>
-                        </ui:MenuFlyout>
-                    </ui:DropDownButton.Flyout>
-                </ui:DropDownButton>
-            </ui:AppBarElementContainer>
             <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
                              ToolTip="{DynamicResource FontToolTip}" Icon="Font">                
             </ui:AppBarButton>
-            <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}" 
-                             Command="{Binding ShowPrintPreviewCommand}">
-                <ui:AppBarButton.Icon>
-                    <ui:FontIcon Glyph="&#xE956;"/>
-                </ui:AppBarButton.Icon>
-            </ui:AppBarButton>
-
+            
             <ui:CommandBar.Content>
                 <ui:AppBarButton Command="{Binding OpenNewWindowCommand}" ToolTip="{DynamicResource NewWindowToolTip}">
                     <ui:AppBarButton.Icon>
@@ -110,28 +86,22 @@
                         <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE792;"/>
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
+                <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}"
+                                 Command="{Binding ShowPrintPreviewCommand}">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="&#xE956;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
                 <ui:AppBarSeparator/>
-                <ui:AppBarToggleButton Label="{DynamicResource StatusBar}" IsChecked="{Binding IsStatusBarVisible}"
-                                       ToolTip="{DynamicResource StatusBarToolTip}" ToolTipService.Placement="Left">
-                    <ui:AppBarToggleButton.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEF2D;"/>
-                    </ui:AppBarToggleButton.Icon>
-                </ui:AppBarToggleButton>
-                <ui:AppBarToggleButton Label="{DynamicResource DarkTheme}"  IsChecked="{Binding IsDarkThemeEnabled}" 
-                                       Command="{Binding ToggleThemeCommand}"
-                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsChecked}"
-                                       ToolTip="{DynamicResource DarkThemeToolTip}" ToolTipService.Placement="Left">
-                    <ui:AppBarToggleButton.Icon>
-                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE793;"/>
-                    </ui:AppBarToggleButton.Icon>
-                </ui:AppBarToggleButton>
-                <ui:AppBarSeparator/>
+                <ui:AppBarButton Label="Ajustes" Icon="Setting" ToolTip="Mostrar ventana de ajustes" ToolTipService.Placement="Left"
+                                 Command="{Binding ShowSettingsWindowCommand}"/>
                 <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
                                  ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">
                     <ui:AppBarButton.Icon>
                         <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;"/>
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
+                <ui:AppBarSeparator/>
                 <ui:AppBarButton Label="{DynamicResource Close}" Icon="Clear" Command="{Binding CloseWindowCommand}"
                                  ToolTip="{DynamicResource CloseProgramToolTip}" ToolTipService.Placement="Left"/>
             </ui:CommandBar.SecondaryCommands>
@@ -202,7 +172,7 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsInPreviewMode}" Value="False"/>
-                                <Condition Binding="{Binding IsStatusBarVisible}" Value="True"/>
+                                <Condition Binding="{Binding SettingsViewModel.IsStatusBarVisible}" Value="True"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>
@@ -215,14 +185,14 @@
             <Border BorderThickness="1" CornerRadius="5" Padding="10">
                 <TextBlock FontFamily="{x:Static SystemFonts.MessageFontFamily}">
                     <Run Text="{DynamicResource NoFindResults}"/>
-                    <Run Text="{Binding FindReplace.TextToFind, StringFormat=' &quot;\{0\}&quot;'}"/>
+                    <Run Text="{Binding FindReplaceViewModel.TextToFind, StringFormat=' &quot;\{0\}&quot;'}"/>
                 </TextBlock>
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="Background" Value="WhiteSmoke"/>
                         <Setter Property="BorderBrush" Value="WhiteSmoke"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsDarkThemeEnabled}" Value="True">
+                            <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeRequested}" Value="True">
                                 <Setter Property="Background" Value="#323232"/>
                                 <Setter Property="BorderBrush" Value="#323232"/>
                             </DataTrigger>
@@ -237,8 +207,8 @@
 
         <cc:TextArea x:Name="textArea" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                      IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6"                     
-                     SpellCheck.IsEnabled="{Binding IsSpellCheckingEnabled}"
-                     TextWrapping="{Binding IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
+                     SpellCheck.IsEnabled="{Binding SettingsViewModel.IsSpellCheckingEnabled}"
+                     TextWrapping="{Binding SettingsViewModel.IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
             <i:Interaction.Behaviors>
                 <behaviors:PasteContentBehavior/>
                 <behaviors:SelectionChangedBehavior CurrentLine="{Binding ElementName=currentLine, Path=Text, Mode=TwoWay}"

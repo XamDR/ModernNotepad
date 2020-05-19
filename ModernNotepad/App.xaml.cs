@@ -21,10 +21,10 @@ namespace ModernNotepad
 
             if (!Directory.Exists(mainViewModel.SettingsManager.SettingsDirectoryPath))
             {
-                mainViewModel.SettingsManager.SaveSettings(mainViewModel.UserSettings);
+                mainViewModel.SettingsManager.SaveSettings(mainViewModel.SettingsViewModel.UserSettings);
             }
             ApplySettings(mainViewModel);
-            ThemeManager.Current.ApplicationTheme = mainViewModel.IsDarkThemeEnabled 
+            ThemeManager.Current.ApplicationTheme = mainViewModel.SettingsViewModel.IsDarkThemeRequested 
                                                     ? ApplicationTheme.Dark : ApplicationTheme.Light;            
             LoadLocale(mainViewModel);
             mainViewModel.Title = mainViewModel.LocaleManager.LoadString("AppTitle");
@@ -58,10 +58,10 @@ namespace ModernNotepad
 
         private void ApplySettings(MainViewModel mainViewModel)
         {
-            mainViewModel.IsDarkThemeEnabled = mainViewModel.SettingsManager.LoadSettings().IsDarkThemeEnabled;
-            mainViewModel.IsSpellCheckingEnabled = mainViewModel.SettingsManager.LoadSettings().IsSpellCheckingEnabled;
-            mainViewModel.IsStatusBarVisible = mainViewModel.SettingsManager.LoadSettings().IsStatusBarVisible;
-            mainViewModel.IsWordWrapEnabled = mainViewModel.SettingsManager.LoadSettings().IsWordWrapEnabled;
+            mainViewModel.SettingsViewModel.IsDarkThemeRequested = mainViewModel.SettingsManager.LoadSettings().IsDarkThemeEnabled;
+            mainViewModel.SettingsViewModel.IsSpellCheckingEnabled = mainViewModel.SettingsManager.LoadSettings().IsSpellCheckingEnabled;
+            mainViewModel.SettingsViewModel.IsStatusBarVisible = mainViewModel.SettingsManager.LoadSettings().IsStatusBarVisible;
+            mainViewModel.SettingsViewModel.IsWordWrapEnabled = mainViewModel.SettingsManager.LoadSettings().IsWordWrapEnabled;            
         }
 
         private void LoadLocale(MainViewModel mainViewModel)
