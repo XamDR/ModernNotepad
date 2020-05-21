@@ -40,7 +40,7 @@
         <KeyBinding Command="{Binding TextEditor.SaveFileCommand}" Gesture="Ctrl+S"/>
         <KeyBinding Command="{Binding ShowFindReplaceWindowCommand}" Gesture="Ctrl+F"/>
         <KeyBinding Command="{Binding TextEditor.SaveFileAsCommand}" Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+Shift+P"/>
+        <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+P"/>
     </Window.InputBindings>
 
     <Window.Resources>        
@@ -93,7 +93,8 @@
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
                 <ui:AppBarSeparator/>
-                <ui:AppBarButton Label="Ajustes" Icon="Setting" ToolTip="Mostrar ventana de ajustes" ToolTipService.Placement="Left"
+                <ui:AppBarButton Label="{DynamicResource Settings}" Icon="Setting" 
+                                 ToolTip="{DynamicResource SettingsToolTip}" ToolTipService.Placement="Left"
                                  Command="{Binding ShowSettingsWindowCommand}"/>
                 <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
                                  ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">

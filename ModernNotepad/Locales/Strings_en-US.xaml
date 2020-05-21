@@ -10,11 +10,10 @@
     <sys:String x:Key="Save">Save</sys:String>
     <sys:String x:Key="Find">Find</sys:String>
     <sys:String x:Key="Font">Font</sys:String>
-    <sys:String x:Key="Format">Format</sys:String>
-    <sys:String x:Key="PrintPreview">Print Preview</sys:String>
+    <sys:String x:Key="Format">Format</sys:String>    
     <sys:String x:Key="SaveAs">Save As</sys:String>
-    <sys:String x:Key="StatusBar">Status Bar</sys:String>
-    <sys:String x:Key="DarkTheme">Dark Theme</sys:String>
+    <sys:String x:Key="Settings">Settings</sys:String>
+    <sys:String x:Key="PrintPreview">Print Preview</sys:String>
     <sys:String x:Key="AboutModernNotepad">About</sys:String>
     <sys:String x:Key="Close">Exit</sys:String>
     <!--#endregion-->
@@ -38,31 +37,23 @@
     <sys:String x:Key="OpenToolTip">Open File (Ctrl+A)</sys:String>
     <sys:String x:Key="SaveToolTip">Save File (Ctrl+S)</sys:String>
     <sys:String x:Key="SaveAsToolTip">Save File As (Ctrl+Shift+S)</sys:String>
+    <sys:String x:Key="SettingsToolTip">Show Settings Window</sys:String>
     <sys:String x:Key="FindToolTip">Find or Replace Text (Ctrl+F)</sys:String>
     <sys:String x:Key="FindNextButtonTooltip">Find Next</sys:String>
     <sys:String x:Key="FindPreviousButtonTooltip">Find Previous</sys:String>
     <sys:String x:Key="ReplaceButtonTooltip">Replace</sys:String>
     <sys:String x:Key="ReplaceAllButtonTooltip">Replace All</sys:String>
-    <sys:String x:Key="FontToolTip">Font Settings</sys:String>
-    <sys:String x:Key="FormatToolTip">Text Format</sys:String>
+    <sys:String x:Key="FontToolTip">Font Settings</sys:String>    
     <sys:String x:Key="PrintPreviewToolTip">Show Print Preview</sys:String>
-    <sys:String x:Key="TextWrappingToolTip">Enable Text Wrapping</sys:String>
-    <sys:String x:Key="SpellCheckToolTip">Enable Spell Check</sys:String>
-    <sys:String x:Key="StatusBarToolTip">Show Status Bar</sys:String>
-    <sys:String x:Key="DarkThemeToolTip">Enable Dark Theme</sys:String>
     <sys:String x:Key="AboutToolTip">About Modern Notepad</sys:String>
     <sys:String x:Key="CloseProgramToolTip">Close Program (Alt+F4)</sys:String>
     <!--#endregion-->
     
     <!--#region StatusBar-->
-    <sys:String x:Key="InitialLineCount">Line Count: 1</sys:String>
-    <sys:String x:Key="LineCount">Line Count</sys:String>
     <sys:String x:Key="LineOne">Line: 1</sys:String>
     <sys:String x:Key="CharOne">Char: 1</sys:String>
     <sys:String x:Key="CurrentLine">Line </sys:String>
     <sys:String x:Key="CurrentChar">Char</sys:String>
-    <sys:String x:Key="TextWrapping">Text Wrapping</sys:String>
-    <sys:String x:Key="SpellCheck">Spell Check</sys:String>
     <!--#endregion-->
     
     <!--#region Font Settings-->
@@ -80,6 +71,18 @@
     <sys:String x:Key="OriginalText">Original text</sys:String>
     <sys:String x:Key="ReplaceWith">Replace with</sys:String>
     <sys:String x:Key="NoFindResults">It could not find the text</sys:String>
+    <!--#endregion-->
+    
+    <!--#region Settings-->
+    <sys:String x:Key="SettingsTitle">Settings</sys:String>
+    <sys:String x:Key="TextWrapping">Text Wrapping</sys:String>
+    <sys:String x:Key="SpellCheck">Spell Checking</sys:String>
+    <sys:String x:Key="StatusBar">Status Bar</sys:String>
+    <sys:String x:Key="StatusBarVisible">Visible</sys:String>
+    <sys:String x:Key="StatusBarHidden">Hidden</sys:String>
+    <sys:String x:Key="AppTheme">Application Theme</sys:String>
+    <sys:String x:Key="DarkTheme">Dark</sys:String>
+    <sys:String x:Key="LightTheme">Light</sys:String>
     <!--#endregion-->
     
     <!--#region About-->
