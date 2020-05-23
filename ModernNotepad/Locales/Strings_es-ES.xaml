@@ -22,11 +22,7 @@
     <sys:String x:Key="PreviousPage">Anterior</sys:String>
     <sys:String x:Key="NextPage">Siguiente</sys:String>
     <sys:String x:Key="Of">de</sys:String>
-    <sys:String x:Key="CancelPrinting">Cancelar</sys:String>
-    <sys:String x:Key="PrintTooltip">Mostrar diálogo de impresión</sys:String>
-    <sys:String x:Key="PreviousPageToolTip">Página anterior</sys:String>
-    <sys:String x:Key="NextPageToolTip">Página siguiente</sys:String>
-    <sys:String x:Key="CancelPrintingTooltip">Cancelar impresión</sys:String>
+    <sys:String x:Key="CancelPrinting">Cancelar</sys:String>    
     <sys:String x:Key="DescriptionPrintJob">Documento</sys:String>
     <!--#endregion-->
 
@@ -44,6 +40,12 @@
     <sys:String x:Key="ReplaceAllButtonTooltip">Reemplazar todo</sys:String>
     <sys:String x:Key="FontToolTip">Configuración de la fuente</sys:String>
     <sys:String x:Key="PrintPreviewToolTip">Mostrar vista previa de impresión</sys:String>
+    <sys:String x:Key="PrintTooltip">Mostrar diálogo de impresión</sys:String>    
+    <sys:String x:Key="PreviousPageToolTip">Página anterior</sys:String>
+    <sys:String x:Key="NextPageToolTip">Página siguiente</sys:String>
+    <sys:String x:Key="ZoomInTooltip">Acercar</sys:String>
+    <sys:String x:Key="ZoomOutTooltip">Alejar</sys:String>
+    <sys:String x:Key="ZoomTooltip">Restaurar zoom (100%)</sys:String>
     <sys:String x:Key="AboutToolTip">Acerca de Modern Notepad</sys:String>
     <sys:String x:Key="CloseProgramToolTip">Cerrar programa (Alt+F4)</sys:String>
     <!--#endregion-->

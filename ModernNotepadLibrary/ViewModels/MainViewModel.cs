@@ -58,6 +58,14 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref isInPreviewMode, value);
         }
 
+        private double scale = 1.0;
+
+        public double Scale
+        {
+            get => scale;
+            set => Set(ref scale, value);
+        }
+
         private bool shouldPopupBeOpen;
 
         public bool ShouldPopupBeOpen
@@ -76,9 +84,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public IWindowService WindowService { get; set; }
 
-        public IApplicationThemeManager ThemeManager { get; set; }
-
-        public ICommand ClosePrintPreviewCommand => new DelegateCommand(ClosePrintPreview);        
+        public IApplicationThemeManager ThemeManager { get; set; } 
 
         public ICommand ClosingWindowCommand => new DelegateCommand<CancelEventArgs>(CloseWindow);
 
@@ -86,7 +92,9 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand OpenNewWindowCommand => new DelegateCommand(OpenNewWindow);
 
-        public ICommand PrintCommand => new DelegateCommand(Print);        
+        public ICommand PrintCommand => new DelegateCommand(Print);
+
+        public ICommand SetZoomFactorCommand => new DelegateCommand<double>(SetZoomFactor);        
 
         public ICommand ShowAboutWindowCommand => new DelegateCommand(ShowAboutWindow);
 
@@ -96,11 +104,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);
 
-        public ICommand ShowSettingsWindowCommand => new DelegateCommand(ShowSettingsWindow);
-
-        private void ShowSettingsWindow() => WindowService.ShowDialog(SettingsViewModel, typeof(SettingsViewModel));
-
-        private void ClosePrintPreview() => IsInPreviewMode = false;
+        public ICommand ShowSettingsWindowCommand => new DelegateCommand(ShowSettingsWindow);        
 
         private void CloseWindow() => WindowService.CloseMainWindow();
 
@@ -142,6 +146,8 @@ namespace ModernNotepadLibrary.ViewModels
 
         private void Print() => PrintService.PrintDocument();
 
+        private void SetZoomFactor(double parameter) => Scale = parameter != 0.0 ? Scale + parameter : 1.0;
+
         private void ShowAboutWindow() => WindowService.ShowDialog(AboutViewModel, typeof(AboutViewModel));
 
         private void ShowFindReplaceWindow() => WindowService.Show(FindReplaceViewModel, typeof(FindReplaceViewModel));
@@ -150,5 +156,7 @@ namespace ModernNotepadLibrary.ViewModels
             => WindowService.ShowDialog(FontSettingsViewModel, typeof(FontSettingsViewModel));
 
         private void ShowPrintPreview() => IsInPreviewMode = true;
+
+        private void ShowSettingsWindow() => WindowService.ShowDialog(SettingsViewModel, typeof(SettingsViewModel));
     }
 }
