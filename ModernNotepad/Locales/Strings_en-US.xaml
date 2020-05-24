@@ -23,11 +23,7 @@
     <sys:String x:Key="PreviousPage">Previous</sys:String>
     <sys:String x:Key="NextPage">Next</sys:String>
     <sys:String x:Key="Of">of</sys:String>
-    <sys:String x:Key="CancelPrinting">Cancel</sys:String>
-    <sys:String x:Key="PrintTooltip">Show Print Dialog</sys:String>
-    <sys:String x:Key="PreviousPageToolTip">Previous Page</sys:String>
-    <sys:String x:Key="NextPageToolTip">Next Page</sys:String>
-    <sys:String x:Key="CancelPrintingTooltip">Cancel Printing</sys:String>
+    <sys:String x:Key="CancelPrinting">Cancel</sys:String>    
     <sys:String x:Key="DescriptionPrintJob">Document</sys:String>
     <!--#endregion-->
     
@@ -45,6 +41,12 @@
     <sys:String x:Key="ReplaceAllButtonTooltip">Replace All</sys:String>
     <sys:String x:Key="FontToolTip">Font Settings</sys:String>    
     <sys:String x:Key="PrintPreviewToolTip">Show Print Preview</sys:String>
+    <sys:String x:Key="PrintTooltip">Show Print Dialog</sys:String>
+    <sys:String x:Key="PreviousPageToolTip">Previous Page</sys:String>
+    <sys:String x:Key="NextPageToolTip">Next Page</sys:String>
+    <sys:String x:Key="ZoomInTooltip">Zoom In</sys:String>
+    <sys:String x:Key="ZoomOutTooltip">Zoom Out</sys:String>
+    <sys:String x:Key="ZoomTooltip">Reset Zoom (100%)</sys:String>
     <sys:String x:Key="AboutToolTip">About Modern Notepad</sys:String>
     <sys:String x:Key="CloseProgramToolTip">Close Program (Alt+F4)</sys:String>
     <!--#endregion-->
