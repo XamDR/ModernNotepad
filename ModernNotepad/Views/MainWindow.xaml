@@ -189,11 +189,11 @@
                     </ui:CommandBar.Content>
                 </ui:CommandBar>
 
-                <Border Grid.Row="1">
-                    <Border.RenderTransform>
+                <cc:PanningBorder Grid.Row="1">
+                    <cc:PanningBorder.RenderTransform>
                         <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
-                    </Border.RenderTransform>
-                    <FlowDocumentPageViewer Name="pageViewer" Foreground="Black">
+                    </cc:PanningBorder.RenderTransform>
+                    <FlowDocumentPageViewer Name="pageViewer" Foreground="Black" ContextMenu="{x:Null}">
                         <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
                                       PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
                                       PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">
@@ -212,7 +212,7 @@
                             </ControlTemplate>
                         </FlowDocumentPageViewer.Template>
                     </FlowDocumentPageViewer>
-                </Border>                
+                </cc:PanningBorder>                
             </Grid>
         </ui:SplitView.Pane>
     </ui:SplitView>
