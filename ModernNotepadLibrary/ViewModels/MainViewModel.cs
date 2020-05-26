@@ -1,6 +1,7 @@
 ﻿using ModernNotepadLibrary.Core;
 using ModernNotepadLibrary.Helpers;
 using ModernNotepadLibrary.Services;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -94,7 +95,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand PrintCommand => new DelegateCommand(Print);
 
-        public ICommand SetZoomFactorCommand => new DelegateCommand<double>(SetZoomFactor);        
+        public ICommand SetZoomFactorCommand => new DelegateCommand<double>(SetZoomFactor);
 
         public ICommand ShowAboutWindowCommand => new DelegateCommand(ShowAboutWindow);
 
@@ -144,9 +145,9 @@ namespace ModernNotepadLibrary.ViewModels
             Process.Start(psi);
         }
 
-        private void Print() => PrintService.PrintDocument();
-
         private void SetZoomFactor(double parameter) => Scale = parameter != 0.0 ? Scale + parameter : 1.0;
+
+        private void Print() => PrintService.PrintDocument();
 
         private void ShowAboutWindow() => WindowService.ShowDialog(AboutViewModel, typeof(AboutViewModel));
 

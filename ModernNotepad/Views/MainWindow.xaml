@@ -32,7 +32,8 @@
         <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+P"/>
     </Window.InputBindings>
 
-    <Window.Resources>        
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <conv:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
         <conv:StringToZoomFactorConverter x:Key="StringToZoomFactor"/>
     </Window.Resources>
@@ -94,7 +95,8 @@
                     </ui:CommandBar.SecondaryCommands>
                 </ui:CommandBar>
 
-                <ui:CommandBar DockPanel.Dock="Bottom" MaxHeight="40" DefaultLabelPosition="Right">
+                <ui:CommandBar DockPanel.Dock="Bottom" MaxHeight="40" DefaultLabelPosition="Right"
+                               Visibility="{Binding SettingsViewModel.IsStatusBarVisible, Converter={StaticResource BooleanToVisibility}}">
                     <ui:AppBarElementContainer>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" FontSize="12" Margin="5,12,10,0"/>
@@ -150,8 +152,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40">                    
+
+                <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40">
                     <ui:AppBarButton Label="" ToolTip="{DynamicResource PreviousPageToolTip}"
                                      Command="NavigationCommands.PreviousPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
                         <ui:AppBarButton.Icon>
@@ -183,7 +185,7 @@
                                      Command="{Binding SetZoomFactorCommand}"
                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, 
                                                         Converter={StaticResource StringToZoomFactor}, Path=Tag}"/>
-                    
+
                     <ui:CommandBar.Content>
                         <ui:AppBarButton Icon="Print" ToolTip="{DynamicResource PrintTooltip}" Command="{Binding PrintCommand}"/>
                     </ui:CommandBar.Content>
@@ -193,7 +195,7 @@
                     <cc:PanningBorder.RenderTransform>
                         <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
                     </cc:PanningBorder.RenderTransform>
-                    <FlowDocumentPageViewer Name="pageViewer" Foreground="Black" ContextMenu="{x:Null}">
+                    <FlowDocumentPageViewer Name="pageViewer" Foreground="Black" ContextMenu="{x:Null}">                        
                         <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
                                       PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
                                       PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">
