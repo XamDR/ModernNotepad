@@ -83,8 +83,9 @@
     <sys:String x:Key="StatusBarVisible">Visible</sys:String>
     <sys:String x:Key="StatusBarHidden">Hidden</sys:String>
     <sys:String x:Key="AppTheme">Application Theme</sys:String>
-    <sys:String x:Key="DarkTheme">Dark</sys:String>
+    <sys:String x:Key="DarkTheme">Dark</sys:String>    
     <sys:String x:Key="LightTheme">Light</sys:String>
+    <sys:String x:Key="OSTheme">Follow OS Theme</sys:String>
     <!--#endregion-->
     
     <!--#region About-->

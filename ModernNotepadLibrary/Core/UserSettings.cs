@@ -2,7 +2,7 @@
 {
     public class UserSettings
     {
-        public bool IsDarkThemeEnabled { get; set; } = false;
+        public bool? IsDarkThemeEnabled { get; set; } = null;
 
         public bool IsSpellCheckingEnabled { get; set; } = false;
 

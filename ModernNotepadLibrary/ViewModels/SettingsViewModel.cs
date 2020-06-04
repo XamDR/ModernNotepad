@@ -16,7 +16,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public UserSettings UserSettings { get; }
 
-        public bool IsDarkThemeRequested
+        public bool? IsDarkThemeEnabled
         {
             get => UserSettings.IsDarkThemeEnabled;
             set
@@ -68,8 +68,8 @@ namespace ModernNotepadLibrary.ViewModels
             }
         }
 
-        public ICommand ToggleThemeCommand => new DelegateCommand<bool>(ToggleTheme);
+        public ICommand ToggleThemeCommand => new DelegateCommand(ToggleTheme);
 
-        private void ToggleTheme(bool isDarkThemeRequested) => mainViewModel.ThemeManager.ChangeTheme(isDarkThemeRequested);
+        private void ToggleTheme() => mainViewModel.ThemeManager.ChangeTheme(IsDarkThemeEnabled);
     }
 }

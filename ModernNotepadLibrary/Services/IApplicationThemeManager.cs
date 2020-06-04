@@ -2,6 +2,6 @@
 {
     public interface IApplicationThemeManager
     {
-        void ChangeTheme(bool isDarkThemeRequested);
+        void ChangeTheme(bool? isDarkThemeRequested);
     }
 }

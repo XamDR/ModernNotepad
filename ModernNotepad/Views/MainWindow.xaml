@@ -119,7 +119,7 @@
                                 <Setter Property="Background" Value="WhiteSmoke"/>
                                 <Setter Property="BorderBrush" Value="WhiteSmoke"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeRequested}" Value="True">
+                                    <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeEnabled}" Value="True">
                                         <Setter Property="Background" Value="#323232"/>
                                         <Setter Property="BorderBrush" Value="#323232"/>
                                     </DataTrigger>

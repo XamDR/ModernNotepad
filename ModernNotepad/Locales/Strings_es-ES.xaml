@@ -84,6 +84,7 @@
     <sys:String x:Key="AppTheme">Tema de la aplicación</sys:String>
     <sys:String x:Key="DarkTheme">Oscuro</sys:String>
     <sys:String x:Key="LightTheme">Claro</sys:String>
+    <sys:String x:Key="OSTheme">Usar el tema de Windows</sys:String>
     <!--#endregion-->
 
     <!--#region About-->
