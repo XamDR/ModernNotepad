@@ -13,7 +13,7 @@ namespace ModernNotepad.Util
 
         public static double PrintableAreaWidth => PrintDialog.PrintableAreaWidth;
 
-        public static void PrintDocument(DocumentPaginator documentPaginator, string description) 
+        public static void PrintDocument(DocumentPaginator documentPaginator, string description)
             => PrintDialog.PrintDocument(documentPaginator, description);
     }
 }
