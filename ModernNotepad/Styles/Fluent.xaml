@@ -3,7 +3,4 @@
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">       
     <sys:Double x:Key="RadioButtonBorderThemeThickness">2</sys:Double>
     <sys:Double x:Key="ToggleSwitchOuterBorderStrokeThickness">2</sys:Double>
-    <SolidColorBrush x:Key="RadioButtonCheckGlyphFill">#FF0063B1</SolidColorBrush>
-    <SolidColorBrush x:Key="RadioButtonCheckGlyphFillPointerOver">#FF0063B1</SolidColorBrush>
-    <SolidColorBrush x:Key="RadioButtonCheckGlyphFillPressed">#FF0063B1</SolidColorBrush>
 </ResourceDictionary>
