@@ -154,52 +154,42 @@
                 </Grid.RowDefinitions>
 
                 <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40">
-                    <ui:AppBarButton Label="" ToolTip="{DynamicResource PreviousPageToolTip}"
-                                     Command="NavigationCommands.PreviousPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="&#xE00E;"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarElementContainer>
-                        <TextBlock Margin="5,10">
-                            <Run Text="{Binding Source={x:Reference pageViewer}, Path=MasterPageNumber, Mode=OneWay}"/>
-                            <Run Text="{DynamicResource Of}"/>
-                            <Run Text="{Binding Source={x:Reference pageViewer}, Path=PageCount, Mode=OneWay}"/>
-                        </TextBlock>
-                    </ui:AppBarElementContainer>
-                    <ui:AppBarButton Label="" ToolTip="{DynamicResource NextPageToolTip}"
-                                     Command="NavigationCommands.NextPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="&#xE00F;"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton Icon="ZoomIn" ToolTip="{DynamicResource ZoomInTooltip}" Tag="ZoomIn"
-                                     Command="{Binding SetZoomFactorCommand}"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, 
-                                                        Converter={StaticResource StringToZoomFactor}, Path=Tag}"/>
-                    <ui:AppBarButton Icon="ZoomOut" ToolTip="{DynamicResource ZoomOutTooltip}" Tag="ZoomOut"
-                                     Command="{Binding SetZoomFactorCommand}"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, 
-                                                        Converter={StaticResource StringToZoomFactor}, Path=Tag}"/>
-                    <ui:AppBarButton Icon="Zoom" ToolTip="{DynamicResource ZoomTooltip}" Tag="Zoom"
-                                     Command="{Binding SetZoomFactorCommand}"
-                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, 
-                                                        Converter={StaticResource StringToZoomFactor}, Path=Tag}"/>
-
+                    <ui:AppBarButton Icon="Zoom" ToolTip="{DynamicResource ZoomTooltip}"
+                                     Command="{Binding ResetZoomFactorCommand}"/>
                     <ui:CommandBar.Content>
-                        <ui:AppBarButton Icon="Print" ToolTip="{DynamicResource PrintTooltip}" Command="{Binding PrintCommand}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ui:AppBarButton Icon="Print" ToolTip="{DynamicResource PrintTooltip}" Margin="0,0,32,0"
+                                             Command="{Binding PrintCommand}"/>
+                            <ui:AppBarButton Label="" ToolTip="{DynamicResource PreviousPageToolTip}" Margin="32,0,0,0"
+                                             Command="NavigationCommands.PreviousPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
+                                <ui:AppBarButton.Icon>
+                                    <ui:FontIcon Glyph="&#xE00E;"/>
+                                </ui:AppBarButton.Icon>
+                            </ui:AppBarButton>
+                            <TextBlock Margin="5,10">
+                                <Run Text="{Binding Source={x:Reference pageViewer}, Path=MasterPageNumber, Mode=OneWay}"/>
+                                <Run Text="{DynamicResource Of}"/>
+                                <Run Text="{Binding Source={x:Reference pageViewer}, Path=PageCount, Mode=OneWay}"/>
+                            </TextBlock>
+                            <ui:AppBarButton Label="" ToolTip="{DynamicResource NextPageToolTip}"
+                                             Command="NavigationCommands.NextPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
+                                <ui:AppBarButton.Icon>
+                                    <ui:FontIcon Glyph="&#xE00F;"/>
+                                </ui:AppBarButton.Icon>
+                            </ui:AppBarButton>
+                        </StackPanel>                        
                     </ui:CommandBar.Content>
                 </ui:CommandBar>
 
-                <cc:PanningBorder Grid.Row="1">
-                    <cc:PanningBorder.RenderTransform>
-                        <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
-                    </cc:PanningBorder.RenderTransform>
+                <cc:DraggableBorder Grid.Row="1">
+                    <i:Interaction.Behaviors>
+                        <behaviors:ZoomBehavior ZoomScale="{Binding Scale, Mode=TwoWay}"/>
+                    </i:Interaction.Behaviors>
                     <FlowDocumentPageViewer Name="pageViewer" Foreground="Black" ContextMenu="{x:Null}">                        
                         <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
                                       PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
                                       PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">
-                            <Paragraph>
+                            <Paragraph Margin="10">
                                 <Run Text="{Binding ElementName=textArea, Path=Text}"/>
                             </Paragraph>
                         </FlowDocument>
@@ -214,7 +204,7 @@
                             </ControlTemplate>
                         </FlowDocumentPageViewer.Template>
                     </FlowDocumentPageViewer>
-                </cc:PanningBorder>                
+                </cc:DraggableBorder>                
             </Grid>
         </ui:SplitView.Pane>
     </ui:SplitView>

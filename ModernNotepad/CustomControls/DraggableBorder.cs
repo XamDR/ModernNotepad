@@ -6,9 +6,9 @@ using System.Windows.Media;
 namespace ModernNotepad.CustomControls
 {
     /// <summary>
-    /// A border that allows to pan its child.
+    /// A draggable border control.
     /// </summary>
-    public class PanningBorder : Border
+    public class DraggableBorder : Border
     {
         private UIElement child = null;
         private Point origin;
@@ -62,7 +62,7 @@ namespace ModernNotepad.CustomControls
                 var tt = GetTranslateTransform(child);
                 start = e.GetPosition(this);
                 origin = new Point(tt.X, tt.Y);
-                Cursor = Cursors.Hand;
+                Cursor = Cursors.SizeAll;
                 child.CaptureMouse();
             }
         }

@@ -49,7 +49,7 @@ namespace ModernNotepadLibrary.ViewModels
             var textArea = mainViewModel.TextEditor.TextArea;
             var text = textArea.Text;
 
-            if (string.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(TextToFind)) return;
 
             var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal).ToList() 
                                     : text.AllIndexesOf(TextToFind).ToList();            
@@ -85,7 +85,7 @@ namespace ModernNotepadLibrary.ViewModels
             var textArea = mainViewModel.TextEditor.TextArea;
             var text = textArea.Text;
 
-            if (string.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(TextToFind)) return;
 
             var indexes = MatchCase ? text.AllIndexesOf(TextToFind, StringComparison.Ordinal).OrderByDescending(i => i).ToList() 
                                     : text.AllIndexesOf(TextToFind).OrderByDescending(i => i).ToList();            
