@@ -2,6 +2,8 @@
 
 Modern Notepad was created to be a modern a minimalist notepad application. It does not include any features that are available in code editors or similar apps. It just tries to mimic most of the features of the classical Windows Notepad application, but adds spell checking capability and support for light/dark/OS themes.
 
+**Note:** This application requires .NET Core runtime for desktop apps, which you can download [here](https://dotnet.microsoft.com/download/dotnet-core/current/runtime).
+
 ## Main Features
 
 - Spell checking
