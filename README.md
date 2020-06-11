@@ -7,7 +7,7 @@ Modern Notepad was created to be a modern and minimalist notepad application. It
 ## Main Features
 
 - Spell checking
-- Light/Dark/OS theme
+- Light/Dark/OS themes
 - Find/Replace text
 - Print preview/Print
 - Font settings
