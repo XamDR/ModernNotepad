@@ -12,5 +12,9 @@ Modern Notepad was created to be a modern a minimalist notepad application. It d
 
 ## Screenshots
 
-Here are some screenshots of the application:
-<!--![Light Theme](C:\Users\Max\Desktop)-->
+Here are a couple screenshots of the application's Spanish version
+- Light Theme:
+![Light Theme](https://github.com/XamDR/ModernNotepad/blob/master/ModernNotepad/Images/LightTheme.png)
+
+- Dark Theme:
+![Dark Theme](https://github.com/XamDR/ModernNotepad/blob/master/ModernNotepad/Images/DarkTheme.png)
