@@ -16,7 +16,13 @@ Modern Notepad was created to be a modern and minimalist notepad application. It
 
 Here are a couple screenshots of the application's Spanish version
 - Light Theme:
-![Light Theme](https://github.com/XamDR/ModernNotepad/raw/master/ModernNotepad/Images/LightTheme.png)
+
+<p align="center">
+  <img alt="Light Theme" src="https://github.com/XamDR/ModernNotepad/raw/master/ModernNotepad/Images/LightTheme.png" />
+</p>
 
 - Dark Theme:
-![Dark Theme](https://github.com/XamDR/ModernNotepad/raw/master/ModernNotepad/Images/DarkTheme.png)
+
+<p align="center">
+  <img alt="Dark Theme" src="https://github.com/XamDR/ModernNotepad/raw/master/ModernNotepad/Images/DarkTheme.png" />
+</p>
