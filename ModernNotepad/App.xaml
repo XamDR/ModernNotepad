@@ -6,8 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources/>
-                <ui:XamlControlsResources/>
-                <ResourceDictionary Source="/Locales/Strings_en-US.xaml"/>
+                <ui:XamlControlsResources/>                
                 <ResourceDictionary Source="/Styles/Fluent.xaml"/>
                 <ResourceDictionary Source="/Styles/FluentRadioButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>

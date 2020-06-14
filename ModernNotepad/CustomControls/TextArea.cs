@@ -1,7 +1,6 @@
 ﻿using ModernNotepadLibrary.Core;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Input;
 
 namespace ModernNotepad.CustomControls
 {
@@ -13,22 +12,9 @@ namespace ModernNotepad.CustomControls
         public TextArea()
         {
             AcceptsReturn = true;
-            AcceptsTab = true;
+            AcceptsTab = true;            
         }
 
-        public void SetFontFamily(string fontFamilyName) => FontFamily = new FontFamily(fontFamilyName);
-
-        protected override void OnPreviewKeyDown(KeyEventArgs e)
-        {
-            base.OnPreviewKeyDown(e);
-            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.A)
-            {
-                e.Handled = true;
-            }
-            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.E)
-            {
-                SelectAll();
-            }
-        }
+        public void SetFontFamily(string fontFamilyName) => FontFamily = new FontFamily(fontFamilyName);        
     }
 }

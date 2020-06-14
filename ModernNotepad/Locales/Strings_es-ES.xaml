@@ -101,5 +101,17 @@
     <sys:String x:Key="SaveButton">Sí, guardar</sys:String>
     <sys:String x:Key="NoSaveButton">No, descartar</sys:String>
     <!--#endregion-->
+    
+    <!--#region ContextMenu-->
+    <sys:String x:Key="Cut">Cortar</sys:String>
+    <sys:String x:Key="Copy">Copiar</sys:String>
+    <sys:String x:Key="Paste">Pegar</sys:String>
+    <sys:String x:Key="Undo">Deshacer</sys:String>
+    <sys:String x:Key="Redo">Rehacer</sys:String>
+    <sys:String x:Key="Delete">Eliminar</sys:String>
+    <sys:String x:Key="SelectAll">Seleccionar todo</sys:String>
+    <sys:String x:Key="Proofing">Revisión</sys:String>
+    <sys:String x:Key="Ignore">Omitir</sys:String>
+    <!--#endregion-->
 
 </ResourceDictionary>

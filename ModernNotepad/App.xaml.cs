@@ -65,8 +65,8 @@ namespace ModernNotepad
         private void LoadLocale(MainViewModel mainViewModel)
         {
             try
-            {                
-                mainViewModel.LocaleManager.LoadStringResource(CultureInfo.CurrentUICulture.Name);
+            {
+                mainViewModel.LocaleManager.LoadStringResource(CultureInfo.CurrentUICulture.Name);                
             }
             catch (Exception)
             {
