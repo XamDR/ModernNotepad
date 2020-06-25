@@ -3,7 +3,9 @@ using ModernNotepad.Services;
 using ModernNotepadLibrary.Core;
 using ModernNotepadLibrary.Helpers;
 using ModernNotepadLibrary.Services;
+using ModernNotepadLibrary.ViewModels;
 using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace ModernNotepad
@@ -15,11 +17,11 @@ namespace ModernNotepad
         [STAThread]
         public static void Main()
         {
-            ShowSplashScreen();           
+            ShowSplashScreen();
+            RegisterServices();
             var app = new App();
             app.InitializeComponent();            
-            RegisterServices();
-            app.Run();
+            app.Run();            
         }
 
         private static void ShowSplashScreen()
@@ -38,7 +40,8 @@ namespace ModernNotepad
             ServiceResolver.Register<IPrintService, PrintService>();
             ServiceResolver.Register<ISaveFileService, SaveFileDialogService>();
             ServiceResolver.Register<ISettingsManager<UserSettings>, SettingsManager>();
-            ServiceResolver.Register<IWindowService, WindowService>();            
+            ServiceResolver.Register<IWindowService, WindowService>();
+            ServiceResolver.Register<INotifyPropertyChanged, MainViewModel>();
         }
     }
 }

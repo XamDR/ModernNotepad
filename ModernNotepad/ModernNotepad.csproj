@@ -11,13 +11,14 @@
     <Description>Modern Notepad is a modern and minimalist notepad application. It was developed using WPF on .Net Core 3.1.</Description>
     <Product>Modern Notepad</Product>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <ApplicationIcon>ModernNotepad.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>Modern Notepad</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\SegMDL2.ttf" />
     <None Remove="Images\SplashScreen.png" />
   </ItemGroup>
 
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\SegMDL2.ttf" />
     <Resource Include="Images\SplashScreen.png" />
     <Resource Include="Locales\Strings_en-US.xaml">
       <Generator>MSBuild:Compile</Generator>

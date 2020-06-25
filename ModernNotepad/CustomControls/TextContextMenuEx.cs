@@ -1,5 +1,6 @@
 ﻿using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -76,8 +77,8 @@ namespace ModernNotepad.CustomControls
             {
                 Command = ApplicationCommands.SelectAll,
                 Icon = new SymbolIcon(Symbol.SelectAll),
-                InputGestureText = "Ctrl+A"
-            });            
+                InputGestureText = GetDisplayStringForSelectAll()
+            });
         }
 
         #region UsingTextContextMenu
@@ -159,7 +160,7 @@ namespace ModernNotepad.CustomControls
 
         private static void OnDeletePreviewCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (sender is TextBox textBox && string.IsNullOrEmpty(textBox.SelectedText))
+            if (sender is TextBox textBox && string.IsNullOrEmpty(textBox.Text))
             {
                 e.CanExecute = false;
                 e.Handled = true;
@@ -296,5 +297,8 @@ namespace ModernNotepad.CustomControls
                 }
             }
         }
+
+        private string GetDisplayStringForSelectAll() => CultureInfo.CurrentUICulture.Name == "es-ES" 
+            ? "Ctrl+A" : ApplicationCommands.SelectAll.InputGestures.Cast<KeyGesture>().First().DisplayString;
     }
 }
