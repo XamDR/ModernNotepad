@@ -22,8 +22,8 @@ namespace ModernNotepad.Behaviors
 
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;
-
+            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;            
+            
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.V)
             {
                 viewModel.Title = $"*{viewModel.Title.Replace("*", "")}";

@@ -61,7 +61,7 @@
                     <ui:CommandBar.Content>
                         <ui:AppBarButton Command="{Binding OpenNewWindowCommand}" ToolTip="{DynamicResource NewWindowToolTip}">
                             <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE109;"/>
+                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE109;"/>
                             </ui:AppBarButton.Icon>
                         </ui:AppBarButton>
                     </ui:CommandBar.Content>
@@ -70,7 +70,7 @@
                         <ui:AppBarButton Label="{DynamicResource SaveAs}" Command="{Binding TextEditor.SaveFileAsCommand}"
                                          ToolTip="{DynamicResource SaveAsToolTip}" ToolTipService.Placement="Left">
                             <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE792;"/>
+                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE792;"/>
                             </ui:AppBarButton.Icon>
                         </ui:AppBarButton>
                         <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}"
@@ -86,7 +86,7 @@
                         <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
                                          ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">
                             <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;"/>
+                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE946;"/>
                             </ui:AppBarButton.Icon>
                         </ui:AppBarButton>
                         <ui:AppBarSeparator/>

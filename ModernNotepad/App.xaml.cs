@@ -1,77 +1,84 @@
-﻿using ModernNotepadLibrary.Core;
-using ModernNotepadLibrary.Services;
-using ModernNotepadLibrary.ViewModels;
+﻿using ModernNotepadLibrary.ViewModels;
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace ModernNotepad
 {
     public partial class App : Application
     {
+        public MainViewModel MainViewModel { get; }
+
+        public App() => MainViewModel = (MainViewModel)Program.ServiceResolver.Create<INotifyPropertyChanged>();
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-            var mainViewModel = CreateMainViewModel();
-            var mainWindow = mainViewModel.WindowService.CreateMainView(mainViewModel, typeof(MainViewModel));
-            mainViewModel.TextEditor.TextArea = mainWindow.TextArea;
+            base.OnStartup(e);            
+            var mainWindow = MainViewModel.WindowService.CreateMainView(MainViewModel, typeof(MainViewModel));
+            MainViewModel.TextEditor.TextArea = mainWindow.TextArea;
 
-            if (!Directory.Exists(mainViewModel.SettingsManager.SettingsDirectoryPath))
+            if (!Directory.Exists(MainViewModel.SettingsManager.SettingsDirectoryPath))
             {
-                mainViewModel.SettingsManager.SaveSettings(mainViewModel.SettingsViewModel.UserSettings);
+                MainViewModel.SettingsManager.SaveSettings(MainViewModel.SettingsViewModel.UserSettings);
             }
-            ApplySettings(mainViewModel);
-            LoadLocale(mainViewModel);
-            mainViewModel.Title = mainViewModel.LocaleManager.LoadString("AppTitle");
-            mainViewModel.FilePath = mainViewModel.LocaleManager.LoadString("NewDocument");
+            ApplySettings(MainViewModel);
+            LoadLocale(MainViewModel);
+            MainViewModel.Title = MainViewModel.LocaleManager.LoadString("AppTitle");
+            MainViewModel.FilePath = MainViewModel.LocaleManager.LoadString("NewDocument");
 
             if (e.Args.Length > 0)
             {
-                mainViewModel.Title = Path.GetFileName(e.Args[0]);
-                mainViewModel.FilePath = Path.GetFullPath(e.Args[0]);
-                mainViewModel.TextEditor.TextArea.Text = File.ReadAllText(e.Args[0], Encoding.Default);
-                mainViewModel.TextEditor.SavedAsFile = true;
-                mainViewModel.SaveFileService.FileName = e.Args[0];
+                MainViewModel.Title = Path.GetFileName(e.Args[0]);
+                MainViewModel.FilePath = Path.GetFullPath(e.Args[0]);
+                MainViewModel.TextEditor.TextArea.Text = File.ReadAllText(e.Args[0], Encoding.Default);
+                MainViewModel.TextEditor.SavedAsFile = true;
+                MainViewModel.SaveFileService.FileName = e.Args[0];
             }
         }
 
-        private MainViewModel CreateMainViewModel()
+        private void ApplySettings(MainViewModel MainViewModel)
         {
-            var mainViewModel = new MainViewModel
-            {
-                DialogService = Program.ServiceResolver.Create<IContentDialogService>(),
-                WindowService = Program.ServiceResolver.Create<IWindowService>(),
-                OpenFileService = Program.ServiceResolver.Create<IOpenFileService>(),
-                SaveFileService = Program.ServiceResolver.Create<ISaveFileService>(),
-                ThemeManager = Program.ServiceResolver.Create<IApplicationThemeManager>(),
-                SettingsManager = Program.ServiceResolver.Create<ISettingsManager<UserSettings>>(),
-                LocaleManager = Program.ServiceResolver.Create<ILocaleManager>(),
-                PrintService = Program.ServiceResolver.Create<IPrintService>(),
-            };
-            return mainViewModel;
+            MainViewModel.SettingsViewModel.IsDarkThemeEnabled = MainViewModel.SettingsManager.LoadSettings().IsDarkThemeEnabled;
+            MainViewModel.SettingsViewModel.IsSpellCheckingEnabled = MainViewModel.SettingsManager.LoadSettings().IsSpellCheckingEnabled;
+            MainViewModel.SettingsViewModel.IsStatusBarVisible = MainViewModel.SettingsManager.LoadSettings().IsStatusBarVisible;
+            MainViewModel.SettingsViewModel.IsWordWrapEnabled = MainViewModel.SettingsManager.LoadSettings().IsWordWrapEnabled;
+            MainViewModel.ThemeManager.ChangeTheme(MainViewModel.SettingsViewModel.IsDarkThemeEnabled);
         }
 
-        private void ApplySettings(MainViewModel mainViewModel)
-        {
-            mainViewModel.SettingsViewModel.IsDarkThemeEnabled = mainViewModel.SettingsManager.LoadSettings().IsDarkThemeEnabled;
-            mainViewModel.SettingsViewModel.IsSpellCheckingEnabled = mainViewModel.SettingsManager.LoadSettings().IsSpellCheckingEnabled;
-            mainViewModel.SettingsViewModel.IsStatusBarVisible = mainViewModel.SettingsManager.LoadSettings().IsStatusBarVisible;
-            mainViewModel.SettingsViewModel.IsWordWrapEnabled = mainViewModel.SettingsManager.LoadSettings().IsWordWrapEnabled;
-            mainViewModel.ThemeManager.ChangeTheme(mainViewModel.SettingsViewModel.IsDarkThemeEnabled);
-        }
-
-        private void LoadLocale(MainViewModel mainViewModel)
+        private void LoadLocale(MainViewModel MainViewModel)
         {
             try
             {
-                mainViewModel.LocaleManager.LoadStringResource(CultureInfo.CurrentUICulture.Name);                
+                MainViewModel.LocaleManager.LoadStringResource(CultureInfo.CurrentUICulture.Name);                
             }
             catch (Exception)
             {
-                mainViewModel.LocaleManager.LoadStringResource("en-US");
+                MainViewModel.LocaleManager.LoadStringResource("en-US");
             }
         }
+
+        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {            
+            WriteLogFile(e.Exception.ToString());
+            const long MB_OK = 0x0L, MB_ERROR = 0x10L;
+            var message = MainViewModel.LocaleManager.LoadString("ErrorMessage");            
+            MessageBox(IntPtr.Zero, message, "Modern Notepad", (uint)(MB_OK | MB_ERROR));
+            e.Handled = true;
+            Current.Shutdown();
+        }
+
+        private void WriteLogFile(string message)
+        {
+            var logPath = @$"{Directory.GetCurrentDirectory()}\error.log";
+            File.WriteAllText(logPath, message);
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, uint uType);
     }
 }

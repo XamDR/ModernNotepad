@@ -22,6 +22,7 @@ namespace ModernNotepad.Locales
                 { "AppDescription", EnglishDescription },
                 { "AppTitle", "Untitled" },
                 { "NewDocument", "New Document.txt" },
+                { "ErrorMessage", "Error executing the program. Please send a copy of the file \"error\" to the email: maxdr.mat@gmail.com"},
             };
             SpanishDictionary = new Dictionary<string, string>
             {
@@ -33,6 +34,7 @@ namespace ModernNotepad.Locales
                 { "AppDescription", SpanishDescription },
                 { "AppTitle", "Sín título" },
                 { "NewDocument", "Nuevo documento.txt" },
+                { "ErrorMessage", "Error al ejecutar el programa. Por favor envíe una copia del archivo \"error\" al correo: maxdr.mat@gmail.com"},
             };
             Dictionaries = new Dictionary<string, Dictionary<string, string>>
             {

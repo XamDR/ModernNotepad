@@ -27,16 +27,16 @@
 
         <TextBox Grid.Column="0" Grid.Row="0" Name="searchBox" Margin="10,5,10,5" MinWidth="200" MaxHeight="20" 
                  ui:ControlHelper.PlaceholderText="{DynamicResource OriginalText}" Text="{Binding TextToFind}"/>
-        <Button Grid.Column="1" Grid.Row="0" Content="&#xE112;" FontFamily="Segoe MDL2 Assets"
+        <Button Grid.Column="1" Grid.Row="0" Content="&#xE112;" FontFamily="pack://application:,,,/Fonts/#SegoeDynamic"
                 Margin="5,0" ToolTip="{DynamicResource FindPreviousButtonTooltip}" Command="{Binding FindPreviousCommand}"/>
-        <Button Grid.Column="2" Grid.Row="0" Content="&#xE111;" FontFamily="Segoe MDL2 Assets"
+        <Button Grid.Column="2" Grid.Row="0" Content="&#xE111;" FontFamily="pack://application:,,,/Fonts/#SegoeDynamic"
                 ToolTip="{DynamicResource FindNextButtonTooltip}" Command="{Binding FindNextCommand}"/>        
 
         <TextBox Grid.Column="0" Grid.Row="1" Margin="10,5,10,5" MinWidth="200" MaxHeight="20"
                  ui:ControlHelper.PlaceholderText="{DynamicResource ReplaceWith}" Text="{Binding TextToReplace}"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets"
+        <Button Grid.Column="1" Grid.Row="1" Content="&#xE8AB;" FontFamily="pack://application:,,,/Fonts/#SegoeDynamic"
                 ToolTip="{DynamicResource ReplaceButtonTooltip}" Margin="5,0" Command="{Binding ReplaceTextCommand}"/>
-        <Button Grid.Column="2" Grid.Row="1" Content="&#xE7FD;" FontFamily="Segoe MDL2 Assets"
+        <Button Grid.Column="2" Grid.Row="1" Content="&#xE7FD;" FontFamily="pack://application:,,,/Fonts/#SegoeDynamic"
                 ToolTip="{DynamicResource ReplaceAllButtonTooltip}" Command="{Binding ReplaceAllTextCommand}"/>
 
         <CheckBox Grid.Column="0" Grid.Row="2" Margin="10,0,0,0" Grid.ColumnSpan="2" Content="{DynamicResource MatchCase}" 

@@ -1,7 +1,6 @@
 ﻿using ModernNotepadLibrary.Core;
 using ModernNotepadLibrary.Helpers;
 using ModernNotepadLibrary.Services;
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -12,8 +11,26 @@ namespace ModernNotepadLibrary.ViewModels
     {
         private bool closing = false; //we need to use this variable because ContentDialog.ShowAsync() is an async method.
 
-        public MainViewModel()
+        public MainViewModel
+        (
+            IContentDialogService dialogService,
+            ILocaleManager localeManager,
+            IOpenFileService openFileService,
+            IPrintService printService,
+            ISaveFileService saveFileService,
+            ISettingsManager<UserSettings> settingsManager,
+            IWindowService windowService,
+            IApplicationThemeManager themeManager
+        )
         {
+            DialogService = dialogService;
+            LocaleManager = localeManager;
+            OpenFileService = openFileService;
+            PrintService = printService;
+            SaveFileService = saveFileService;
+            SettingsManager = settingsManager;
+            WindowService = windowService;
+            ThemeManager = themeManager;
             TextEditor = new TextEditor(this);            
             AboutViewModel = new AboutViewModel(this);
             FindReplaceViewModel = new FindReplaceViewModel(this);
@@ -31,17 +48,21 @@ namespace ModernNotepadLibrary.ViewModels
 
         public TextEditor TextEditor { get; }
 
-        public IContentDialogService DialogService { get; set; }
+        public IContentDialogService DialogService { get; }
 
-        public ILocaleManager LocaleManager { get; set; }
+        public ILocaleManager LocaleManager { get; }
 
-        public IOpenFileService OpenFileService { get; set; }
+        public IOpenFileService OpenFileService { get; }
 
-        public IPrintService PrintService { get; set; }
+        public IPrintService PrintService { get; }
 
-        public ISaveFileService SaveFileService { get; set; }
+        public ISaveFileService SaveFileService { get; }
 
-        public ISettingsManager<UserSettings> SettingsManager { get; set; }
+        public ISettingsManager<UserSettings> SettingsManager { get; }
+
+        public IApplicationThemeManager ThemeManager { get; }
+
+        public IWindowService WindowService { get; }
 
         public string filePath;
 
@@ -82,10 +103,6 @@ namespace ModernNotepadLibrary.ViewModels
             get => title;
             set => Set(ref title, value);
         }
-
-        public IWindowService WindowService { get; set; }
-
-        public IApplicationThemeManager ThemeManager { get; set; } 
 
         public ICommand ClosingWindowCommand => new DelegateCommand<CancelEventArgs>(CloseWindow);
 
