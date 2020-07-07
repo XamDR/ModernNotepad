@@ -39,11 +39,14 @@
                     <Setter Property="Control.FontSize" Value="14" />
                 </Style>
             </ComboBox.Resources>
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <VirtualizingStackPanel VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
-                        <TextBlock Style="{StaticResource FontStyle}" Text="{Binding}" ToolTip="{Binding}"/>
-                    </VirtualizingStackPanel>
+                    <TextBlock Style="{StaticResource FontStyle}" Text="{Binding}" ToolTip="{Binding}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
