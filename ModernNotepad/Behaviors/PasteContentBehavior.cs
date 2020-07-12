@@ -2,7 +2,6 @@
 using ModernNotepadLibrary.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace ModernNotepad.Behaviors
 {
@@ -11,23 +10,24 @@ namespace ModernNotepad.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-            AssociatedObject.PreviewKeyDown += OnPreviewKeyDown;
+            DataObject.AddPastingHandler(AssociatedObject, OnPaste);
         }
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            AssociatedObject.PreviewKeyDown -= OnPreviewKeyDown;
+            DataObject.RemovePastingHandler(AssociatedObject, OnPaste);
         }
 
-        private void OnPreviewKeyDown(object sender, KeyEventArgs e)
+        private void OnPaste(object sender, DataObjectPastingEventArgs e)
         {
-            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;            
-            
-            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.V)
+            if (e.DataObject.GetDataPresent(DataFormats.Text, true) ||
+                e.DataObject.GetDataPresent(DataFormats.UnicodeText, true))
             {
+                var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;
                 viewModel.Title = $"*{viewModel.Title.Replace("*", "")}";
                 viewModel.TextEditor.UnsavedChanges = true;
+                //AssociatedObject.InvalidateVisual();
             }
         }
     }

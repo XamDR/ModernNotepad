@@ -35,7 +35,7 @@
                   SelectedItem="{Binding SelectedFontName, Converter={StaticResource StringToFontFamily}}">
             <ComboBox.Resources>
                 <Style x:Key="FontStyle">
-                    <Setter Property="Control.FontFamily" Value="{Binding}" />
+                    <Setter Property="Control.FontFamily" Value="{Binding}"/>
                     <Setter Property="Control.FontSize" Value="14" />
                 </Style>
             </ComboBox.Resources>
