@@ -7,9 +7,6 @@
     
     <sys:Double x:Key="RadioButtonBorderThemeThickness">2</sys:Double>
     <sys:Double x:Key="ToggleSwitchOuterBorderStrokeThickness">2</sys:Double>
-    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-    <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
 
     <Thickness x:Key="TextBoxTopHeaderMargin">0,0,0,4</Thickness>
 
