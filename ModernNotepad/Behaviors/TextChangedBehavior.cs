@@ -25,7 +25,8 @@ namespace ModernNotepad.Behaviors
             var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;            
             var textArea = viewModel.TextEditor.TextArea;
 
-            if (e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length || 
+            if (e.Changes.FirstOrDefault().AddedLength > 0 ||
+                e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length || 
                 e.Changes.FirstOrDefault().RemovedLength > 0)
             {                
                 viewModel.Title = $"*{viewModel.Title.Replace("*", "")}";
