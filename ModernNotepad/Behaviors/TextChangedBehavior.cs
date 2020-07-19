@@ -27,7 +27,7 @@ namespace ModernNotepad.Behaviors
 
             if (e.Changes.FirstOrDefault().AddedLength > 0 ||
                 e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length || 
-                e.Changes.FirstOrDefault().RemovedLength > 0)
+                e.Changes.FirstOrDefault().RemovedLength > 0) // BUG HERE
             {                
                 viewModel.Title = $"*{viewModel.Title.Replace("*", "")}";
                 viewModel.TextEditor.UnsavedChanges = true;
