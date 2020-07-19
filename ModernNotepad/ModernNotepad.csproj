@@ -11,7 +11,7 @@
     <Description>Modern Notepad is a modern and minimalist notepad application. It was developed using WPF on .Net Core 3.1.</Description>
     <Product>Modern Notepad</Product>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
     <ApplicationIcon>ModernNotepad.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>Modern Notepad</AssemblyName>

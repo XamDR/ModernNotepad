@@ -10,8 +10,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources/>
                 <ui:XamlControlsResources/>                
-                <ResourceDictionary Source="/Styles/Fluent.xaml"/>
-                <ResourceDictionary Source="/Styles/FluentRadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/TextAreaStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/FluentStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

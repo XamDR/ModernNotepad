@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using ModernNotepad.CustomControls;
 
 namespace ModernNotepad.Views
 {
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : DialogWindow
     {
         public SettingsWindow() => InitializeComponent();
     }

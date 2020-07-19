@@ -27,8 +27,8 @@
         <KeyBinding Command="{Binding TextEditor.CreateNewDocumentCommand}" Gesture="Ctrl+N"/>
         <KeyBinding Command="{Binding TextEditor.OpenFileCommand}" Gesture="Ctrl+E"/>
         <KeyBinding Command="{Binding TextEditor.SaveFileCommand}" Gesture="Ctrl+S"/>
-        <KeyBinding Command="{Binding ShowFindReplaceWindowCommand}" Gesture="Ctrl+R"/>
-        <KeyBinding Command="{Binding ShowFontSettingsWindowCommand}" Gesture="Ctrl+F"/>
+        <KeyBinding Command="{Binding ShowFindReplaceWindowCommand}" Gesture="Ctrl+F"/>
+        <KeyBinding Command="{Binding ShowFontSettingsWindowCommand}" Gesture="Ctrl+T"/>
         <KeyBinding Command="{Binding TextEditor.SaveFileAsCommand}" Gesture="Ctrl+Shift+S"/>
         <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+P"/>
         <KeyBinding Command="{Binding ShowSettingsWindowCommand}" Gesture="Ctrl+G"/>

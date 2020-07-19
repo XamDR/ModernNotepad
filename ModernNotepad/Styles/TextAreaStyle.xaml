@@ -1,12 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-                    xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
                     xmlns:ui="http://schemas.modernwpf.com/2019"
+                    xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
                     xmlns:util="clr-namespace:ModernNotepad.Util">
-    
-    <sys:Double x:Key="RadioButtonBorderThemeThickness">2</sys:Double>
-    <sys:Double x:Key="ToggleSwitchOuterBorderStrokeThickness">2</sys:Double>
 
     <Thickness x:Key="TextBoxTopHeaderMargin">0,0,0,4</Thickness>
 
