@@ -138,10 +138,10 @@
                     </i:Interaction.Behaviors>
                 </Popup>
 
-                <cc:TextArea x:Name="textArea" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                <cc:TextArea x:Name="textArea" x:FieldModifier="private" Grid.Row="1" 
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                              IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6" FontFamily="Consolas" FontSize="14"
-                             Style="{StaticResource TextAreaStyle}"
-                             SpellCheck.IsEnabled="{Binding SettingsViewModel.IsSpellCheckingEnabled}"
+                             Style="{StaticResource TextAreaStyle}" SpellCheck.IsEnabled="{Binding SettingsViewModel.IsSpellCheckingEnabled}"
                              TextWrapping="{Binding SettingsViewModel.IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
                     <i:Interaction.Behaviors>
                         <behaviors:PasteContentBehavior/>
@@ -192,7 +192,7 @@
                     <i:Interaction.Behaviors>
                         <behaviors:ZoomBehavior ZoomScale="{Binding Scale, Mode=TwoWay}"/>
                     </i:Interaction.Behaviors>
-                    <FlowDocumentPageViewer Name="pageViewer" Foreground="Black" ContextMenu="{x:Null}">                        
+                    <FlowDocumentPageViewer Name="pageViewer" x:FieldModifier="private" Foreground="Black" ContextMenu="{x:Null}">                        
                         <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
                                       PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
                                       PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">

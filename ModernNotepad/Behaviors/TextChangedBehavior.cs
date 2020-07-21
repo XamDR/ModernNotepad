@@ -22,13 +22,14 @@ namespace ModernNotepad.Behaviors
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {   
-            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;            
-            var textArea = viewModel.TextEditor.TextArea;
+            var viewModel = Application.Current.MainWindow.DataContext as MainViewModel;
+            var editor = viewModel.TextEditor;
+            var textArea = editor.TextArea;
 
-            if (e.Changes.FirstOrDefault().AddedLength > 0 ||
-                e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length || 
-                e.Changes.FirstOrDefault().RemovedLength > 0) // BUG HERE
-            {                
+            if ((!editor.SavedAsFile && e.Changes.FirstOrDefault().AddedLength > 0) ||
+                e.Changes.FirstOrDefault().AddedLength != textArea.Text.Length ||
+                e.Changes.FirstOrDefault().RemovedLength > 0)
+            {
                 viewModel.Title = $"*{viewModel.Title.Replace("*", "")}";
                 viewModel.TextEditor.UnsavedChanges = true;
             }
