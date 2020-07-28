@@ -20,7 +20,7 @@ namespace ModernNotepad
         {
             base.OnStartup(e);            
             var mainWindow = MainViewModel.WindowService.CreateMainView(MainViewModel, typeof(MainViewModel));
-            MainViewModel.TextEditor.TextArea = mainWindow.TextArea;
+            MainViewModel.TextEditor.TextArea = mainWindow.TextArea;            
 
             if (!Directory.Exists(MainViewModel.SettingsManager.SettingsDirectoryPath))
             {
@@ -33,10 +33,11 @@ namespace ModernNotepad
 
             if (e.Args.Length > 0)
             {
+                MainViewModel.TextEditor.SavedAsFile = true;
                 MainViewModel.Title = Path.GetFileName(e.Args[0]);
                 MainViewModel.FilePath = Path.GetFullPath(e.Args[0]);
                 MainViewModel.TextEditor.TextArea.Text = File.ReadAllText(e.Args[0], Encoding.Default);
-                MainViewModel.TextEditor.SavedAsFile = true;
+                //MainViewModel.TextEditor.SavedAsFile = true;
                 MainViewModel.SaveFileService.FileName = e.Args[0];
             }
         }
