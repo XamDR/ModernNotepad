@@ -9,13 +9,13 @@ namespace ModernNotepad.Services
     {
         public void PrintDocument()
         {            
-            if (PrintDialogWrapper.IsPrintJobSendToQueue)
-            {
-                var document = (Application.Current.MainWindow as MainWindow).Document;
-                var documentPaginator = document.DocumentPaginator;
-                var description = (string)Application.Current.TryFindResource("DescriptionPrintJob");
-                PrintDialogWrapper.PrintDocument(documentPaginator, description);
-            }
+            //if (PrintDialogWrapper.IsPrintJobSendToQueue)
+            //{
+            //    var document = (Application.Current.MainWindow as MainWindow).Document;
+            //    var documentPaginator = document.DocumentPaginator;
+            //    var description = (string)Application.Current.TryFindResource("DescriptionPrintJob");
+            //    PrintDialogWrapper.PrintDocument(documentPaginator, description);
+            //}
         }
     }
 }

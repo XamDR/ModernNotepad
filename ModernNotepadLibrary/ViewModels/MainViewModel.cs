@@ -13,6 +13,7 @@ namespace ModernNotepadLibrary.ViewModels
 
         public MainViewModel
         (
+            IAdornerService adornerService,
             IContentDialogService dialogService,
             ILocaleManager localeManager,
             IOpenFileService openFileService,
@@ -23,6 +24,7 @@ namespace ModernNotepadLibrary.ViewModels
             IApplicationThemeManager themeManager
         )
         {
+            AdornerService = adornerService;
             DialogService = dialogService;
             LocaleManager = localeManager;
             OpenFileService = openFileService;
@@ -48,6 +50,8 @@ namespace ModernNotepadLibrary.ViewModels
 
         public TextEditor TextEditor { get; }
 
+        public IAdornerService AdornerService { get; }
+
         public IContentDialogService DialogService { get; }
 
         public ILocaleManager LocaleManager { get; }
@@ -72,28 +76,12 @@ namespace ModernNotepadLibrary.ViewModels
             set => Set(ref filePath, value);
         }
 
-        private bool isInPreviewMode;
+        private bool noTextFound;
 
-        public bool IsInPreviewMode
+        public bool NoTextFound
         {
-            get => isInPreviewMode;
-            set => Set(ref isInPreviewMode, value);
-        }
-
-        private double scale = 1.0;
-
-        public double Scale
-        {
-            get => scale;
-            set => Set(ref scale, value);
-        }
-
-        private bool shouldPopupBeOpen;
-
-        public bool ShouldPopupBeOpen
-        {
-            get => shouldPopupBeOpen;
-            set => Set(ref shouldPopupBeOpen, value);
+            get => noTextFound;
+            set => Set(ref noTextFound, value);
         }
 
         private string title;
@@ -110,17 +98,11 @@ namespace ModernNotepadLibrary.ViewModels
 
         public ICommand OpenNewWindowCommand => new DelegateCommand(OpenNewWindow);
 
-        public ICommand PrintCommand => new DelegateCommand(Print);
-
-        public ICommand ResetZoomFactorCommand => new DelegateCommand(ResetZoomFactor);
-
         public ICommand ShowAboutWindowCommand => new DelegateCommand(ShowAboutWindow);
 
         public ICommand ShowFindReplaceWindowCommand => new DelegateCommand(ShowFindReplaceWindow);
 
         public ICommand ShowFontSettingsWindowCommand => new DelegateCommand(ShowFontSettingsWindow);
-
-        public ICommand ShowPrintPreviewCommand => new DelegateCommand(ShowPrintPreview);
 
         public ICommand ShowSettingsWindowCommand => new DelegateCommand(ShowSettingsWindow);        
 
@@ -162,18 +144,12 @@ namespace ModernNotepadLibrary.ViewModels
             Process.Start(psi);
         }
 
-        private void ResetZoomFactor() => Scale = 1.0;
-
-        private void Print() => PrintService.PrintDocument();
-
         private void ShowAboutWindow() => WindowService.ShowDialog(AboutViewModel, typeof(AboutViewModel));
 
         private void ShowFindReplaceWindow() => WindowService.Show(FindReplaceViewModel, typeof(FindReplaceViewModel));
 
         private void ShowFontSettingsWindow() 
             => WindowService.ShowDialog(FontSettingsViewModel, typeof(FontSettingsViewModel));
-
-        private void ShowPrintPreview() => IsInPreviewMode = true;
 
         private void ShowSettingsWindow() => WindowService.ShowDialog(SettingsViewModel, typeof(SettingsViewModel));
     }

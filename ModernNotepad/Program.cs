@@ -33,6 +33,7 @@ namespace ModernNotepad
         private static void RegisterServices()
         {
             ServiceResolver = new ServiceResolver();
+            ServiceResolver.Register<IAdornerService, AdornerService>();
             ServiceResolver.Register<IApplicationThemeManager, ApplicationThemeManager>();
             ServiceResolver.Register<IContentDialogService, ContentDialogService>();
             ServiceResolver.Register<ILocaleManager, LocaleManager>();

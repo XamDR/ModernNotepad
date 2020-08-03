@@ -12,5 +12,8 @@ namespace ModernNotepad.Util
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, uint uType);
     }
 }

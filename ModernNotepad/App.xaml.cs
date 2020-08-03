@@ -1,9 +1,9 @@
-﻿using ModernNotepadLibrary.ViewModels;
+﻿using ModernNotepad.Util;
+using ModernNotepadLibrary.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
@@ -37,7 +37,6 @@ namespace ModernNotepad
                 MainViewModel.Title = Path.GetFileName(e.Args[0]);
                 MainViewModel.FilePath = Path.GetFullPath(e.Args[0]);
                 MainViewModel.TextEditor.TextArea.Text = File.ReadAllText(e.Args[0], Encoding.Default);
-                //MainViewModel.TextEditor.SavedAsFile = true;
                 MainViewModel.SaveFileService.FileName = e.Args[0];
             }
         }
@@ -68,7 +67,7 @@ namespace ModernNotepad
             WriteLogFile(e.Exception.ToString());
             const long MB_OK = 0x0L, MB_ERROR = 0x10L;
             var message = MainViewModel.LocaleManager.LoadString("ErrorMessage");            
-            MessageBox(IntPtr.Zero, message, "Modern Notepad", (uint)(MB_OK | MB_ERROR));
+            NativeMethods.MessageBox(IntPtr.Zero, message, "Modern Notepad", (uint)(MB_OK | MB_ERROR));
             e.Handled = true;
             Current.Shutdown();
         }
@@ -78,8 +77,5 @@ namespace ModernNotepad
             var logPath = @$"{Directory.GetCurrentDirectory()}\error.log";
             File.WriteAllText(logPath, message);
         }
-
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        private static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, uint uType);
     }
 }

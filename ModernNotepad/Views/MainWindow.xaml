@@ -6,9 +6,8 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behaviors="clr-namespace:ModernNotepad.Behaviors"
-        xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
         xmlns:conv="clr-namespace:ModernNotepad.Converters"
-        xmlns:util="clr-namespace:ModernNotepad.Util"
+        xmlns:cc="clr-namespace:ModernNotepad.CustomControls"
         mc:Ignorable="d"
         Title="{Binding Title, StringFormat='\{0\} - Modern Notepad'}" 
         Height="600" Width="900"
@@ -30,189 +29,121 @@
         <KeyBinding Command="{Binding ShowFindReplaceWindowCommand}" Gesture="Ctrl+F"/>
         <KeyBinding Command="{Binding ShowFontSettingsWindowCommand}" Gesture="Ctrl+T"/>
         <KeyBinding Command="{Binding TextEditor.SaveFileAsCommand}" Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="{Binding ShowPrintPreviewCommand}" Gesture="Ctrl+P"/>
         <KeyBinding Command="{Binding ShowSettingsWindowCommand}" Gesture="Ctrl+G"/>
     </Window.InputBindings>
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <conv:BooleanToTextWrappingConverter x:Key="BooleanToTextWrapping"/>
-        <conv:StringToZoomFactorConverter x:Key="StringToZoomFactor"/>
     </Window.Resources>
 
-    <ui:SplitView PanePlacement="Right" OpenPaneLength="450" DisplayMode="Overlay" IsPaneOpen="{Binding IsInPreviewMode, Mode=TwoWay}">
-        <ui:SplitView.Content>
-            <DockPanel LastChildFill="True">
-                <ui:CommandBar DockPanel.Dock="Top" DefaultLabelPosition="Right" MaxHeight="40">
-                    <ui:AppBarButton Label="{DynamicResource New}" Command="{Binding TextEditor.CreateNewDocumentCommand}"
-                                     ToolTip="{DynamicResource NewFileToolTip}" Icon="Document" ToolTipService.Placement="Bottom">
-                    </ui:AppBarButton>
-                    <ui:AppBarButton Label="{DynamicResource Open}" Command="{Binding TextEditor.OpenFileCommand}"
-                                     ToolTip="{DynamicResource OpenToolTip}" Icon="OpenFile" ToolTipService.Placement="Bottom">
-                    </ui:AppBarButton>
-                    <ui:AppBarButton Label="{DynamicResource Save}" Command="{Binding TextEditor.SaveFileCommand}"
-                                     ToolTip="{DynamicResource SaveToolTip}" Icon="Save" ToolTipService.Placement="Bottom">
-                    </ui:AppBarButton>
-                    <ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
-                                     ToolTip="{DynamicResource FindToolTip}" Icon="Find" ToolTipService.Placement="Bottom">
-                    </ui:AppBarButton>
-                    <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
-                                     ToolTip="{DynamicResource FontToolTip}" Icon="Font">
-                    </ui:AppBarButton>
+    <DockPanel LastChildFill="True">
+        <ui:CommandBar DockPanel.Dock="Top" DefaultLabelPosition="Right" MaxHeight="40">
+            <ui:AppBarButton Label="{DynamicResource New}" Command="{Binding TextEditor.CreateNewDocumentCommand}"
+                             ToolTip="{DynamicResource NewFileToolTip}" Icon="Document" ToolTipService.Placement="Bottom">
+            </ui:AppBarButton>
+            <ui:AppBarButton Label="{DynamicResource Open}" Command="{Binding TextEditor.OpenFileCommand}"
+                             ToolTip="{DynamicResource OpenToolTip}" Icon="OpenFile" ToolTipService.Placement="Bottom">
+            </ui:AppBarButton>
+            <ui:AppBarButton Label="{DynamicResource Save}" Command="{Binding TextEditor.SaveFileCommand}"
+                             ToolTip="{DynamicResource SaveToolTip}" Icon="Save" ToolTipService.Placement="Bottom">
+            </ui:AppBarButton>
+            <ui:AppBarButton Label="{DynamicResource Find}" Command="{Binding ShowFindReplaceWindowCommand}"
+                             ToolTip="{DynamicResource FindToolTip}" Icon="Find" ToolTipService.Placement="Bottom">
+            </ui:AppBarButton>
+            <ui:AppBarButton Label="{DynamicResource Font}" Command="{Binding ShowFontSettingsWindowCommand}"
+                             ToolTip="{DynamicResource FontToolTip}" Icon="Font">
+            </ui:AppBarButton>
 
-                    <ui:CommandBar.Content>
-                        <ui:AppBarButton Command="{Binding OpenNewWindowCommand}" ToolTip="{DynamicResource NewWindowToolTip}">
-                            <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE109;"/>
-                            </ui:AppBarButton.Icon>
-                        </ui:AppBarButton>
-                    </ui:CommandBar.Content>
+            <ui:CommandBar.Content>
+                <ui:AppBarButton Command="{Binding OpenNewWindowCommand}" ToolTip="{DynamicResource NewWindowToolTip}">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE109;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+            </ui:CommandBar.Content>
 
-                    <ui:CommandBar.SecondaryCommands>
-                        <ui:AppBarButton Label="{DynamicResource SaveAs}" Command="{Binding TextEditor.SaveFileAsCommand}"
-                                         ToolTip="{DynamicResource SaveAsToolTip}" ToolTipService.Placement="Left">
-                            <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE792;"/>
-                            </ui:AppBarButton.Icon>
-                        </ui:AppBarButton>
-                        <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}"
-                                         Command="{Binding ShowPrintPreviewCommand}">
-                            <ui:AppBarButton.Icon>
-                                <ui:FontIcon Glyph="&#xE956;"/>
-                            </ui:AppBarButton.Icon>
-                        </ui:AppBarButton>
-                        <ui:AppBarSeparator/>
-                        <ui:AppBarButton Label="{DynamicResource Settings}" Icon="Setting"
-                                         ToolTip="{DynamicResource SettingsToolTip}" ToolTipService.Placement="Left"
-                                         Command="{Binding ShowSettingsWindowCommand}"/>
-                        <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
-                                         ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">
-                            <ui:AppBarButton.Icon>
-                                <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE946;"/>
-                            </ui:AppBarButton.Icon>
-                        </ui:AppBarButton>
-                        <ui:AppBarSeparator/>
-                        <ui:AppBarButton Label="{DynamicResource Close}" Icon="Cancel" Command="{Binding CloseWindowCommand}"
-                                         ToolTip="{DynamicResource CloseProgramToolTip}" ToolTipService.Placement="Left"/>
-                    </ui:CommandBar.SecondaryCommands>
-                </ui:CommandBar>
+            <ui:CommandBar.SecondaryCommands>
+                <ui:AppBarButton Label="{DynamicResource SaveAs}" Command="{Binding TextEditor.SaveFileAsCommand}"
+                                 ToolTip="{DynamicResource SaveAsToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE792;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton Label="{DynamicResource PrintPreview}" ToolTip="{DynamicResource PrintPreviewToolTip}"
+                                 Command="{x:Static ApplicationCommands.NotACommand}">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="&#xE956;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarSeparator/>
+                <ui:AppBarButton Label="{DynamicResource Settings}" Icon="Setting"
+                                 ToolTip="{DynamicResource SettingsToolTip}" ToolTipService.Placement="Left"
+                                 Command="{Binding ShowSettingsWindowCommand}"/>
+                <ui:AppBarButton Label="{DynamicResource AboutModernNotepad}" Command="{Binding ShowAboutWindowCommand}"
+                                 ToolTip="{DynamicResource AboutToolTip}" ToolTipService.Placement="Left">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon FontFamily="pack://application:,,,/Fonts/#SegoeDynamic" Glyph="&#xE946;"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarSeparator/>
+                <ui:AppBarButton Label="{DynamicResource Close}" Icon="Cancel" Command="{Binding CloseWindowCommand}"
+                                 ToolTip="{DynamicResource CloseProgramToolTip}" ToolTipService.Placement="Left"/>
+            </ui:CommandBar.SecondaryCommands>
+        </ui:CommandBar>
 
-                <ui:CommandBar DockPanel.Dock="Bottom" MaxHeight="40" DefaultLabelPosition="Right"
-                               Visibility="{Binding SettingsViewModel.IsStatusBarVisible, Converter={StaticResource BooleanToVisibility}}">
-                    <ui:AppBarElementContainer>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" FontSize="12" Margin="5,12,10,0"/>
-                            <TextBlock Name="currentChar" Text="{DynamicResource CharOne}" FontSize="12" Margin="10,12,10,0"/>
-                        </StackPanel>
-                    </ui:AppBarElementContainer>
-                    <ui:CommandBar.Content>
-                        <TextBlock Text="{Binding FilePath}" Margin="10,12,0,0" FontSize="12"/>
-                    </ui:CommandBar.Content>   
-                </ui:CommandBar>
+        <ui:CommandBar DockPanel.Dock="Bottom" MaxHeight="40" DefaultLabelPosition="Right"
+                       Visibility="{Binding SettingsViewModel.IsStatusBarVisible, Converter={StaticResource BooleanToVisibility}}">
+            <ui:AppBarElementContainer>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="currentLine" Text="{DynamicResource LineOne}" FontSize="12" Margin="5,12,10,0"/>
+                    <TextBlock Name="currentChar" Text="{DynamicResource CharOne}" FontSize="12" Margin="10,12,10,0"/>
+                </StackPanel>
+            </ui:AppBarElementContainer>
+            <ui:CommandBar.Content>
+                <TextBlock Text="{Binding FilePath}" Margin="10,12,0,0" FontSize="12"/>
+            </ui:CommandBar.Content>
+        </ui:CommandBar>
 
-                <Popup AllowsTransparency="True" Placement="Bottom" PopupAnimation="Fade" IsOpen="{Binding ShouldPopupBeOpen}">
-                    <Border BorderThickness="1" CornerRadius="5" Padding="10">
-                        <TextBlock FontFamily="{x:Static SystemFonts.MessageFontFamily}">
-                            <Run Text="{DynamicResource NoFindResults}"/>
-                            <Run Text="{Binding FindReplaceViewModel.TextToFind, StringFormat='&quot;\{0\}&quot;'}"/>
-                        </TextBlock>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="WhiteSmoke"/>
-                                <Setter Property="BorderBrush" Value="WhiteSmoke"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeEnabled}" Value="True">
-                                        <Setter Property="Background" Value="#323232"/>
-                                        <Setter Property="BorderBrush" Value="#323232"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeEnabled}" Value="{x:Null}">
-                                        <Setter Property="Background" Value="#323232"/>
-                                        <Setter Property="BorderBrush" Value="#323232"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                    <i:Interaction.Behaviors>
-                        <behaviors:PopupOpenedBehavior/>
-                    </i:Interaction.Behaviors>
-                </Popup>
+        <Popup AllowsTransparency="True" Placement="Bottom" PopupAnimation="Fade" IsOpen="{Binding NoTextFound}">
+            <Border BorderThickness="1" CornerRadius="5" Padding="10">
+                <TextBlock FontFamily="{x:Static SystemFonts.MessageFontFamily}">
+                    <Run Text="{DynamicResource NoFindResults}"/>
+                    <Run Text="{Binding FindReplaceViewModel.TextToFind, StringFormat='&quot;\{0\}&quot;'}"/>
+                </TextBlock>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="WhiteSmoke"/>
+                        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeEnabled}" Value="True">
+                                <Setter Property="Background" Value="#323232"/>
+                                <Setter Property="BorderBrush" Value="#323232"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SettingsViewModel.IsDarkThemeEnabled}" Value="{x:Null}">
+                                <Setter Property="Background" Value="#323232"/>
+                                <Setter Property="BorderBrush" Value="#323232"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+            <i:Interaction.Behaviors>
+                <behaviors:PopupOpenedBehavior/>
+            </i:Interaction.Behaviors>
+        </Popup>
 
-                <cc:TextArea x:Name="textArea" x:FieldModifier="private" Grid.Row="1" 
-                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                             IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6" FontFamily="Consolas" FontSize="14"
-                             Style="{StaticResource TextAreaStyle}" SpellCheck.IsEnabled="{Binding SettingsViewModel.IsSpellCheckingEnabled}"
-                             TextWrapping="{Binding SettingsViewModel.IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
-                    <i:Interaction.Behaviors>
-                        <behaviors:PasteContentBehavior/>
-                        <behaviors:SelectionChangedBehavior CurrentLine="{Binding ElementName=currentLine, Path=Text, Mode=TwoWay}"
-                                                            CurrentCharacter="{Binding ElementName=currentChar, Path=Text, Mode=TwoWay}"/>
-                        <behaviors:TextChangedBehavior/>
-                    </i:Interaction.Behaviors>
-                </cc:TextArea>
-            </DockPanel>    
-        </ui:SplitView.Content>
-        
-        <ui:SplitView.Pane>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <ui:CommandBar Grid.Row="0" DefaultLabelPosition="Right" MaxHeight="40">
-                    <ui:AppBarButton Icon="Zoom" ToolTip="{DynamicResource ZoomTooltip}"
-                                     Command="{Binding ResetZoomFactorCommand}"/>
-                    <ui:CommandBar.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <ui:AppBarButton Icon="Print" ToolTip="{DynamicResource PrintTooltip}" Margin="0,0,32,0"
-                                             Command="{Binding PrintCommand}"/>
-                            <ui:AppBarButton Label="" ToolTip="{DynamicResource PreviousPageToolTip}" Margin="32,0,0,0"
-                                             Command="NavigationCommands.PreviousPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
-                                <ui:AppBarButton.Icon>
-                                    <ui:FontIcon Glyph="&#xE00E;"/>
-                                </ui:AppBarButton.Icon>
-                            </ui:AppBarButton>
-                            <TextBlock Margin="5,10">
-                                <Run Text="{Binding Source={x:Reference pageViewer}, Path=MasterPageNumber, Mode=OneWay}"/>
-                                <Run Text="{DynamicResource Of}"/>
-                                <Run Text="{Binding Source={x:Reference pageViewer}, Path=PageCount, Mode=OneWay}"/>
-                            </TextBlock>
-                            <ui:AppBarButton Label="" ToolTip="{DynamicResource NextPageToolTip}"
-                                             Command="NavigationCommands.NextPage" CommandTarget="{Binding Source={x:Reference pageViewer}}">
-                                <ui:AppBarButton.Icon>
-                                    <ui:FontIcon Glyph="&#xE00F;"/>
-                                </ui:AppBarButton.Icon>
-                            </ui:AppBarButton>
-                        </StackPanel>                        
-                    </ui:CommandBar.Content>
-                </ui:CommandBar>
-
-                <cc:DraggableBorder Grid.Row="1">
-                    <i:Interaction.Behaviors>
-                        <behaviors:ZoomBehavior ZoomScale="{Binding Scale, Mode=TwoWay}"/>
-                    </i:Interaction.Behaviors>
-                    <FlowDocumentPageViewer Name="pageViewer" x:FieldModifier="private" Foreground="Black" ContextMenu="{x:Null}">                        
-                        <FlowDocument ColumnGap="0" ColumnWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}"
-                                      PageHeight="{x:Static util:PrintDialogWrapper.PrintableAreaHeight}"
-                                      PageWidth="{x:Static util:PrintDialogWrapper.PrintableAreaWidth}">
-                            <Paragraph Margin="10">
-                                <Run Text="{Binding ElementName=textArea, Path=Text}"/>
-                            </Paragraph>
-                        </FlowDocument>
-                        <FlowDocumentPageViewer.Template>
-                            <ControlTemplate TargetType="FlowDocumentPageViewer">
-                                <Viewbox Margin="5,10">
-                                    <Border BorderBrush="Gray" BorderThickness="1" Background="White"
-                                            Width="Auto" Height="Auto" Margin="0.5,0.5,0,0">
-                                        <DocumentPageView FlowDocumentPageViewer.IsMasterPage="True"/>
-                                    </Border>
-                                </Viewbox>
-                            </ControlTemplate>
-                        </FlowDocumentPageViewer.Template>
-                    </FlowDocumentPageViewer>
-                </cc:DraggableBorder>                
-            </Grid>
-        </ui:SplitView.Pane>
-    </ui:SplitView>
+        <cc:TextArea x:Name="textArea" x:FieldModifier="private" Grid.Row="1"
+                     HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                     IsInactiveSelectionHighlightEnabled="True" Padding="10,5,20,6" FontFamily="Consolas" FontSize="14"
+                     Style="{StaticResource TextAreaStyle}" SpellCheck.IsEnabled="{Binding SettingsViewModel.IsSpellCheckingEnabled}"
+                     TextWrapping="{Binding SettingsViewModel.IsWordWrapEnabled, Converter={StaticResource BooleanToTextWrapping}}">
+            <i:Interaction.Behaviors>
+                <behaviors:PasteContentBehavior/>
+                <behaviors:SelectionChangedBehavior CurrentLine="{Binding ElementName=currentLine, Path=Text, Mode=TwoWay}"
+                                                    CurrentCharacter="{Binding ElementName=currentChar, Path=Text, Mode=TwoWay}"/>
+                <behaviors:TextChangedBehavior/>
+            </i:Interaction.Behaviors>
+        </cc:TextArea>
+    </DockPanel>
 </Window>

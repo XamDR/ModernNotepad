@@ -29,6 +29,14 @@ namespace ModernNotepadLibrary.ViewModels
             }
         }
 
+        private bool isHighlightAdornerVisible;
+
+        public bool IsHighlightAdornerVisible
+        {
+            get => isHighlightAdornerVisible;
+            set => Set(ref isHighlightAdornerVisible, value);
+        }
+
         public bool IsSpellCheckingEnabled
         {
             get => UserSettings.IsSpellCheckingEnabled;
@@ -68,8 +76,22 @@ namespace ModernNotepadLibrary.ViewModels
             }
         }
 
-        public ICommand ToggleThemeCommand => new DelegateCommand(ToggleTheme);
+        public ICommand ChangeThemeCommand => new DelegateCommand(ChangeTheme);
 
-        private void ToggleTheme() => mainViewModel.ThemeManager.ChangeTheme(IsDarkThemeEnabled);
+        public ICommand HighlightCurrentLineCommand => new DelegateCommand(HighlightCurrentLine);
+
+        private void ChangeTheme() => mainViewModel.ThemeManager.ChangeTheme(IsDarkThemeEnabled);
+
+        private void HighlightCurrentLine()
+        {
+            if (IsHighlightAdornerVisible)
+            {
+                mainViewModel.AdornerService.AddAdorner(mainViewModel.TextEditor.TextArea);
+            }
+            else
+            {
+                mainViewModel.AdornerService.RemoveAdorner(mainViewModel.TextEditor.TextArea);
+            }
+        }
     }
 }

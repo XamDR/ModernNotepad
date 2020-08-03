@@ -9,7 +9,5 @@ namespace ModernNotepad.Views
         public MainWindow() => InitializeComponent();
 
         public ITextArea TextArea => textArea;
-
-        public IDocumentPaginatorSource Document => pageViewer.Document;
     }
 }

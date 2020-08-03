@@ -17,25 +17,33 @@
     <Window.Resources>
         <conv:BooleanToSelectedIndexConverter x:Key="BooleanToSelectedIndex"/>
     </Window.Resources>
-    
-    <StackPanel Margin="10">
-        <ui:ToggleSwitch Header="{DynamicResource TextWrapping}" Margin="5,7"
-                         IsOn="{Binding IsWordWrapEnabled}"/>
-        <ui:ToggleSwitch Header="{DynamicResource SpellCheck}" Margin="5,7" 
-                         IsOn="{Binding IsSpellCheckingEnabled}"/>
-        <ui:ToggleSwitch Header="{DynamicResource StatusBar}" Margin="5,7" 
-                         OffContent="{DynamicResource StatusBarHidden}" OnContent="{DynamicResource StatusBarVisible}"
-                         IsOn="{Binding IsStatusBarVisible}"/>
-        <ui:RadioButtons Header="{DynamicResource AppTheme}" Margin="5,7"
-                         SelectedIndex="{Binding IsDarkThemeEnabled, Converter={StaticResource BooleanToSelectedIndex}}">
-            <RadioButton Content="{DynamicResource LightTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
-            <RadioButton Content="{DynamicResource DarkTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
-            <RadioButton Content="{DynamicResource OSTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding ToggleThemeCommand}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </ui:RadioButtons>
-    </StackPanel>
+
+    <ScrollViewer>
+        <StackPanel Margin="10">
+            <ui:ToggleSwitch Header="{DynamicResource TextWrapping}" Margin="5,7" IsOn="{Binding IsWordWrapEnabled}"/>
+            <ui:ToggleSwitch Header="{DynamicResource SpellCheck}" Margin="5,7" IsOn="{Binding IsSpellCheckingEnabled}"/>
+            <ui:ToggleSwitch Header="{DynamicResource StatusBar}" Margin="5,7" 
+                             OffContent="{DynamicResource StatusBarHidden}" OnContent="{DynamicResource StatusBarVisible}"
+                             IsOn="{Binding IsStatusBarVisible}"/>
+            <ui:RadioButtons Header="{DynamicResource AppTheme}" Margin="5,7"
+                             SelectedIndex="{Binding IsDarkThemeEnabled, Converter={StaticResource BooleanToSelectedIndex}}">
+                <RadioButton Content="{DynamicResource LightTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
+                <RadioButton Content="{DynamicResource DarkTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
+                <RadioButton Content="{DynamicResource OSTheme}" Style="{StaticResource FluentRadioButtonStyle}"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ChangeThemeCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ui:RadioButtons>
+            <Separator/>
+            <ui:ToggleSwitch Header="Highlight Current Line" Margin="5,7" IsOn="{Binding IsHighlightAdornerVisible}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Toggled">
+                        <i:InvokeCommandAction Command="{Binding HighlightCurrentLineCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ui:ToggleSwitch>
+        </StackPanel>
+    </ScrollViewer>
 </cc:DialogWindow>

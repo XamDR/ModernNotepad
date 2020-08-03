@@ -37,13 +37,12 @@ namespace ModernNotepad.Behaviors
         }
 
         private void OnSelectionChanged(object sender, RoutedEventArgs e)
-        {
-            var charIndex = AssociatedObject.SelectionStart;
-            var currentLine = AssociatedObject.GetLineIndexFromCharacterIndex(charIndex) + 1;
+        {            
+            var currentLine = AssociatedObject.GetLineIndexFromCharacterIndex(AssociatedObject.CaretIndex) + 1;
             CurrentLine = $"{Application.Current.TryFindResource("CurrentLine")}: {currentLine}";
 
             var firstCharIndex = AssociatedObject.GetCharacterIndexFromLineIndex(currentLine - 1);
-            var currentCharacter = charIndex - firstCharIndex + 1;
+            var currentCharacter = AssociatedObject.CaretIndex - firstCharIndex + 1;
             CurrentCharacter = $"{Application.Current.TryFindResource("CurrentChar")}: {currentCharacter}";
 
         }

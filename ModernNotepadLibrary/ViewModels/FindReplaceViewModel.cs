@@ -76,7 +76,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                mainViewModel.ShouldPopupBeOpen = true;
+                mainViewModel.NoTextFound = true;
             }
         }
 
@@ -112,7 +112,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                mainViewModel.ShouldPopupBeOpen = true;
+                mainViewModel.NoTextFound = true;
             }
         }
 
@@ -153,7 +153,7 @@ namespace ModernNotepadLibrary.ViewModels
             }
             else
             {
-                mainViewModel.ShouldPopupBeOpen = true;
+                mainViewModel.NoTextFound = true;
             }
         }
     }
